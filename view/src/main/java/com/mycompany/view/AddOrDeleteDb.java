@@ -5,6 +5,9 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.util.ConmentMessage;
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  *
  */
@@ -135,18 +138,28 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
 
     private void dataBaseListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataBaseListMouseClicked
         String selected = dataBaseList.getSelectedValue();
-        String dbName = selected.replace("localhost/", "");
-        db.setText("ServerName=localhost, Port=5432, Database=" + dbName);
+        String dbName = selected.replace(ConmentMessage.LOCALHOST, ConmentMessage.BLANK);
+        db.setText(ConmentMessage.DATABESEINFO + dbName);
 
     }//GEN-LAST:event_dataBaseListMouseClicked
 
+    /**
+     *
+     * @param evt
+     */
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
 
         this.dispose();
         Main m = new Main();
+        // 
+        m.node = (DefaultMutableTreeNode) m.databaseTree.getLastSelectedPathComponent();
+
+        m.node.insert(new DefaultMutableTreeNode("yyyyyy"), m.node.getIndex(m.node.getLastChild()));
+
+        m.model.reload(m.node);
+
         m.setVisible(true);
-        //TODO
-        //getAllTable 
+
     }//GEN-LAST:event_closeActionPerformed
 
     /**

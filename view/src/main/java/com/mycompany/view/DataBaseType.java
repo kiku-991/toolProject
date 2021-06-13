@@ -5,6 +5,8 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.util.ConmentMessage;
+
 /**
  *
  */
@@ -68,6 +70,11 @@ public class DataBaseType extends javax.swing.JFrame {
                 oracelMouseMoved(evt);
             }
         });
+        oracel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oracelActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 102, 255));
@@ -124,20 +131,24 @@ public class DataBaseType extends javax.swing.JFrame {
     }//GEN-LAST:event_postgreSQLActionPerformed
 
     private void postgreSQLMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postgreSQLMouseMoved
-        message.setText("<html>PostgreSQL に接続する時に使います。<br>PostgreSQLのクライアントライブラリがインストールされている必要はありません<html>");
+        message.setText(ConmentMessage.POSTGRESQL);
     }//GEN-LAST:event_postgreSQLMouseMoved
 
     private void oracelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oracelMouseMoved
-        message.setText("Oracle Database に接続する時に使います。");
+        message.setText(ConmentMessage.ORACLE);
     }//GEN-LAST:event_oracelMouseMoved
 
     private void sqlServerMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sqlServerMouseMoved
-        message.setText("SQL Server に接続する時に使います。");
+        message.setText(ConmentMessage.SQLSERVER);
     }//GEN-LAST:event_sqlServerMouseMoved
 
     private void mySqlMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mySqlMouseMoved
-        message.setText("MySQL に接続する時に使います。");
+        message.setText(ConmentMessage.MYSQL);
     }//GEN-LAST:event_mySqlMouseMoved
+
+    private void oracelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oracelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oracelActionPerformed
 
     /**
      * @param args the command line arguments

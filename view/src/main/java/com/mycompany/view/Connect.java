@@ -6,6 +6,7 @@
 package com.mycompany.view;
 
 import com.mycompany.model.ConnectEntity;
+import com.mycompany.util.ConmentMessage;
 import com.mycompany.util.JDBCConnect;
 import com.mycompany.view.utils.DialogMessage;
 import java.sql.Statement;
@@ -17,6 +18,7 @@ import javax.swing.DefaultListModel;
  */
 public class Connect extends javax.swing.JFrame {
 
+    //ダイアログ
     DialogMessage dialog = new DialogMessage();
 
     /**
@@ -58,11 +60,17 @@ public class Connect extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("データタイプ"));
 
+        PostgreSQL.setBackground(new java.awt.Color(255, 255, 255));
         PostgreSQL.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        PostgreSQL.setSelected(true);
         PostgreSQL.setText("PostgreSQL");
 
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
         jRadioButton2.setText("Amazon Redshift");
 
@@ -115,7 +123,9 @@ public class Connect extends javax.swing.JFrame {
 
         password.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
 
+        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        jCheckBox1.setSelected(true);
         jCheckBox1.setText("パスワード保存");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -222,6 +232,11 @@ public class Connect extends javax.swing.JFrame {
         cancel.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
         cancel.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\close_32.png")); // NOI18N
         cancel.setText("キャンセル");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,22 +271,35 @@ public class Connect extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * テスト接続ボタンを押下
+     *
+     * @param evt
+     */
     private void testConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testConnectActionPerformed
-
+        //データベース名設定
         ConnectEntity.DATABASENAME = datebaseName.getText();
-        ConnectEntity.PASSWORD = password.getText();
+        //ユーザ名設定
         ConnectEntity.USERNAME = userName.getText();
+        //パスワード設定
+        ConnectEntity.PASSWORD = password.getText();
 
         JDBCConnect Connect = new JDBCConnect();
         Statement ss = Connect.getConn();
         if (ss != null) {
-            dialog.popDialog("接続成功しました");
+            //接続成功場合
+            dialog.popDialog(ConmentMessage.CONNECT_SUCCESSFUL, true);
         } else {
-            dialog.popDialog("接続失敗しました");
+            //接続失敗場合
+            dialog.popDialog(ConmentMessage.CONNECT_FAIL, false);
         }
 
     }//GEN-LAST:event_testConnectActionPerformed
-
+    /**
+     * okボタンを押下
+     *
+     * @param evt
+     */
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // TODO add your handling code here:
         AddOrDeleteDb db = new AddOrDeleteDb();
@@ -283,22 +311,29 @@ public class Connect extends javax.swing.JFrame {
 
         // ArrayList<String> tableList = jb.getAllTableName();
         if (jb.connect.getConn() != null) {
-           
+            //データベース別名を取得
             dbList.add(ConnectEntity.DATABASEBETUNAME);
 
             dbList.forEach((list) -> {
                 demoList.addElement(list);
             });
-
+            //データベース別名設定
             db.dataBaseList.setModel(demoList);
             db.setVisible(true);
             this.dispose();
 
         } else {
-            dialog.popDialog("先に接続してください");
+            //接続提示
+            dialog.popDialog(ConmentMessage.PLESECONNECT, false);
 
         }
     }//GEN-LAST:event_okActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        this.dispose();
+        AddOrDeleteDb dbtp = new AddOrDeleteDb();
+        dbtp.setVisible(true);
+    }//GEN-LAST:event_cancelActionPerformed
 
     /**
      * @param args the command line arguments

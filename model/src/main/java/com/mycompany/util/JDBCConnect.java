@@ -29,18 +29,17 @@ public class JDBCConnect {
     Statement stmt;
     ResultSet rset;
 
-
     public static final JDBCConnect connect = new JDBCConnect();
 
     /**
      * データベース接続
      *
-     * @return
+     * @return stmt
      */
     public Statement getConn() {
 
         //ドライバー
-        String driver = "org.postgresql.Driver";
+        String driver = ConmentMessage.DRIVER;
         // String url = "jdbc:postgresql://" + sname + ":" + portNum + "/" + dbname;
 
         //データベース名
@@ -50,12 +49,12 @@ public class JDBCConnect {
         //パスワード
         String pwd = ConnectEntity.PASSWORD;
 
-        ConnectEntity.DATABASEBETUNAME = "localhost/" + databaseName;
+        ConnectEntity.DATABASEBETUNAME = ConmentMessage.LOCALHOST + databaseName;
 
         /*
         "jdbc:postgresql://localhost:5432/kiku", "postgres", "postgres"
          */
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/" + databaseName;
+        String jdbcUrl = ConmentMessage.JDBCURL + databaseName;
         try {
             Class.forName(driver);
             conn = (Connection) DriverManager.getConnection(jdbcUrl, username, pwd);
@@ -70,6 +69,11 @@ public class JDBCConnect {
 
     }
 
+    /**
+     * クローズデータベース
+     *
+     * @throws SQLException
+     */
     public void closeDBcon() throws SQLException {
         if (conn != null) {
             stmt.close();
@@ -77,6 +81,11 @@ public class JDBCConnect {
         }
     }
 
+    /**
+     * 実行SQL
+     *
+     * @param sql
+     */
     public void executeSql(String sql) {
 
         try {
@@ -87,6 +96,11 @@ public class JDBCConnect {
 
     }
 
+    /**
+     * すべてのテーブル名を取得
+     *
+     * @return tableList
+     */
     public ArrayList<String> getAllTableName() {
 
         ArrayList<String> tableList = new ArrayList<>();

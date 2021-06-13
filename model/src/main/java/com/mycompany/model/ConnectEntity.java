@@ -11,11 +11,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ConnectEntity {
-
+    // ユーザ名
     public static String USERNAME;
+    //パスワード
     public static String PASSWORD;
+    //データベース名
     public static String DATABASENAME;
-    
+    //データベース別名
     public static String DATABASEBETUNAME;
 
 }
