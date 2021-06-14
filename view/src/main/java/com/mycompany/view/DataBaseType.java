@@ -17,6 +17,7 @@ public class DataBaseType extends javax.swing.JFrame {
      */
     public DataBaseType() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

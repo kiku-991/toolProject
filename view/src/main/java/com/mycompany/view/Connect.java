@@ -26,6 +26,7 @@ public class Connect extends javax.swing.JFrame {
      */
     public Connect() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

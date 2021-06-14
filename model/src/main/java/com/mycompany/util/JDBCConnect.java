@@ -25,11 +25,11 @@ import lombok.Setter;
 @Setter
 public class JDBCConnect {
 
+    public static final JDBCConnect connect = new JDBCConnect();
+
     Connection conn;
     Statement stmt;
     ResultSet rset;
-
-    public static final JDBCConnect connect = new JDBCConnect();
 
     /**
      * データベース接続
@@ -48,7 +48,7 @@ public class JDBCConnect {
         String username = ConnectEntity.USERNAME;
         //パスワード
         String pwd = ConnectEntity.PASSWORD;
-
+        //データベース別名
         ConnectEntity.DATABASEBETUNAME = ConmentMessage.LOCALHOST + databaseName;
 
         /*

@@ -20,6 +20,7 @@ public class NewJDialog extends javax.swing.JDialog {
         
        
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

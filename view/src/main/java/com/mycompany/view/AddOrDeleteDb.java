@@ -5,8 +5,10 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.model.ConnectEntity;
 import com.mycompany.util.ConmentMessage;
-import javax.swing.tree.DefaultMutableTreeNode;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -18,6 +20,8 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
      */
     public AddOrDeleteDb() {
         initComponents();
+        //中央設置
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -151,13 +155,21 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
 
         this.dispose();
         Main m = new Main();
+
+        DefaultListModel demoList = new DefaultListModel();
+        ArrayList<String> tableList = new ArrayList<>();
+
+        tableList.add(ConnectEntity.DATABASEBETUNAME);
+
+        tableList.forEach((list) -> {
+            demoList.addElement(list);
+        });
+
+        m.tableList.setModel(demoList);
         // 
-        m.node = (DefaultMutableTreeNode) m.databaseTree.getLastSelectedPathComponent();
+        // m.node.insert(new DefaultMutableTreeNode("yyyyyy"), 0);
 
-        m.node.insert(new DefaultMutableTreeNode("yyyyyy"), m.node.getIndex(m.node.getLastChild()));
-
-        m.model.reload(m.node);
-
+        // m.model.reload(m.node);
         m.setVisible(true);
 
     }//GEN-LAST:event_closeActionPerformed
