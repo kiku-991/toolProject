@@ -38,6 +38,7 @@ public class DataBaseType extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("追加するデータベースの接続タイプを選択");
 
         sqlServer.setText("Microsoft SQL Server");
         sqlServer.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {

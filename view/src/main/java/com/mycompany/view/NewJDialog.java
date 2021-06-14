@@ -37,6 +37,7 @@ public class NewJDialog extends javax.swing.JDialog {
         message = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("メッセージ");
 
         ok.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
         ok.setText("OK");

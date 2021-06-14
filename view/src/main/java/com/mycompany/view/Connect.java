@@ -60,6 +60,7 @@ public class Connect extends javax.swing.JFrame {
         cancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("データベースの内容を登録");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -285,9 +286,8 @@ public class Connect extends javax.swing.JFrame {
         //パスワード設定
         ConnectEntity.PASSWORD = password.getText();
 
-        JDBCConnect Connect = new JDBCConnect();
-        Statement ss = Connect.getConn();
-        if (ss != null) {
+        Statement st = JDBCConnect.connect.getConn();
+        if (st != null) {
             //接続成功場合
             dialog.popDialog(ConmentMessage.CONNECT_SUCCESSFUL, true);
         } else {
@@ -304,18 +304,15 @@ public class Connect extends javax.swing.JFrame {
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         // TODO add your handling code here:
         AddOrDeleteDb db = new AddOrDeleteDb();
-        JDBCConnect jb = new JDBCConnect();
 
-        ArrayList<String> dbList = new ArrayList<>();
-
+        //  ArrayList<String> dbList = new ArrayList<>();
         DefaultListModel demoList = new DefaultListModel();
 
         // ArrayList<String> tableList = jb.getAllTableName();
-        if (jb.connect.getConn() != null) {
+        if (JDBCConnect.connect.getStmt()!= null) {
             //データベース別名を取得
-            dbList.add(ConnectEntity.DATABASEBETUNAME);
 
-            dbList.forEach((list) -> {
+            ConnectEntity.DATABASEBETUNAMELIST.forEach((list) -> {
                 demoList.addElement(list);
             });
             //データベース別名設定

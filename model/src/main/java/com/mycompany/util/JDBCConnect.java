@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.Getter;
@@ -30,6 +33,9 @@ public class JDBCConnect {
     Connection conn;
     Statement stmt;
     ResultSet rset;
+    
+    List<String> dataNameList = new ArrayList<>();
+    Map<String, String> differentDB = new HashMap<>();
 
     /**
      * データベース接続
@@ -50,10 +56,16 @@ public class JDBCConnect {
         String pwd = ConnectEntity.PASSWORD;
         //データベース別名
         ConnectEntity.DATABASEBETUNAME = ConmentMessage.LOCALHOST + databaseName;
+        dataNameList.add(ConnectEntity.DATABASEBETUNAME);
+        //データベース別名List
+        ConnectEntity.DATABASEBETUNAMELIST = dataNameList;
+        
+        differentDB.put(ConnectEntity.DATABASEBETUNAME+"dbname", ConnectEntity.PASSWORD);
+        differentDB.put(ConnectEntity.DATABASEBETUNAME+"uname", ConnectEntity.USERNAME);
+        differentDB.put(ConnectEntity.DATABASEBETUNAME+"pwd", ConnectEntity.PASSWORD);
+        
+        ConnectEntity.DIFFERENTDB =differentDB;
 
-        /*
-        "jdbc:postgresql://localhost:5432/kiku", "postgres", "postgres"
-         */
         String jdbcUrl = ConmentMessage.JDBCURL + databaseName;
         try {
             Class.forName(driver);

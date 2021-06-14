@@ -24,6 +24,14 @@ public class ConmentMessage {
     public static final String JDBCURL = "jdbc:postgresql://localhost:5432/";
     public static final String INFOICON = "D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Knob-Info-icon.png";
     public static final String ATTETIONICON = "D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Knob-Attention-icon.png";
+    public static final String OUTPUTOK = "指定されたフォルダに出力しました";
+    public static final String OUTPUTFAIL = "指定されたフォルダに出力失敗しました";
+    public static final String CHOOSEPLEASE = "フォルダを選択してください";
+    public static final String NOUSEDTABLE = "使用可能な表がないです";
+    public static final String CHOOSEDELETATABLE = "削除したい表を選択してください";
+    public static final String CHOOSEADDTABLE = "追加したい表を選択してください";
+    public static final String NODELETETABLE = "削除するデータがないですよ";
+    public static final String NOSELECTEDTABLE = "選択した表がないです";
     
 
 }

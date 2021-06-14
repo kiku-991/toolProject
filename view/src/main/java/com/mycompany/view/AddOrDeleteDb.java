@@ -7,8 +7,12 @@ package com.mycompany.view;
 
 import com.mycompany.model.ConnectEntity;
 import com.mycompany.util.ConmentMessage;
-import java.util.ArrayList;
+import com.mycompany.util.JDBCConnect;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -44,6 +48,7 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         dataBaseList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("データベースの追加と削除");
 
         close.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\close_32.png")); // NOI18N
         close.setText("閉じる");
@@ -61,6 +66,11 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         });
 
         delete.setText("削除");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
 
         modify.setText("修正");
 
@@ -133,14 +143,20 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dbActionPerformed
 
+    /**
+     * 追加
+     *
+     * @param evt
+     */
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        // TODO add your handling code here:
+
         DataBaseType type = new DataBaseType();
         type.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addActionPerformed
 
     private void dataBaseListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataBaseListMouseClicked
+
         String selected = dataBaseList.getSelectedValue();
         String dbName = selected.replace(ConmentMessage.LOCALHOST, ConmentMessage.BLANK);
         db.setText(ConmentMessage.DATABESEINFO + dbName);
@@ -148,31 +164,45 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
     }//GEN-LAST:event_dataBaseListMouseClicked
 
     /**
+     * 閉じる
      *
      * @param evt
      */
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
 
+        try {
+            JDBCConnect.connect.closeDBcon();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddOrDeleteDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
         Main m = new Main();
 
         DefaultListModel demoList = new DefaultListModel();
-        ArrayList<String> tableList = new ArrayList<>();
+        // ArrayList<String> tableList = new ArrayList<>();
 
-        tableList.add(ConnectEntity.DATABASEBETUNAME);
-
-        tableList.forEach((list) -> {
+        ConnectEntity.DATABASEBETUNAMELIST.forEach((list) -> {
             demoList.addElement(list);
         });
 
         m.tableList.setModel(demoList);
-        // 
-        // m.node.insert(new DefaultMutableTreeNode("yyyyyy"), 0);
 
-        // m.model.reload(m.node);
         m.setVisible(true);
 
     }//GEN-LAST:event_closeActionPerformed
+
+    /**
+     * 削除
+     *
+     * @param evt
+     */
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+
+        int index = dataBaseList.getSelectedIndex();
+        ((DefaultListModel) dataBaseList.getModel()).remove(index);
+        initComponents();
+
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments

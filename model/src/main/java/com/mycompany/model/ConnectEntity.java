@@ -5,12 +5,15 @@
  */
 package com.mycompany.model;
 
+import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class ConnectEntity {
+
     // ユーザ名
     public static String USERNAME;
     //パスワード
@@ -19,5 +22,9 @@ public class ConnectEntity {
     public static String DATABASENAME;
     //データベース別名
     public static String DATABASEBETUNAME;
+    //データベース別名List
+    public static List<String> DATABASEBETUNAMELIST;
+    //異なるデータベース保存用
+    public static Map<String, String> DIFFERENTDB;
 
 }

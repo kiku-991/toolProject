@@ -5,8 +5,9 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.model.ConnectEntity;
+import com.mycompany.util.ConmentMessage;
 import com.mycompany.util.FileChoose;
-import com.mycompany.util.JDBCConnect;
 import com.mycompany.util.Output;
 import com.mycompany.view.utils.DialogMessage;
 import java.util.ArrayList;
@@ -78,6 +79,7 @@ public class Main extends javax.swing.JFrame {
         databaseTree = new javax.swing.JTree();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableList = new javax.swing.JList<>();
+        message = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -245,19 +247,26 @@ public class Main extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(320, 320, 320))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(320, 320, 320))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(8, 8, 8)
+                .addComponent(message, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,7 +343,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(datebase, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                     .addComponent(file, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53))
         );
@@ -350,9 +359,23 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    /**
+     * データベースの追加
+     * @param evt 
+     */
     private void datebaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datebaseActionPerformed
-        // TODO add your handling code here:
+
         AddOrDeleteDb add = new AddOrDeleteDb();
+        DefaultListModel demoList = new DefaultListModel();
+        if (ConnectEntity.DATABASEBETUNAMELIST != null) {
+            ConnectEntity.DATABASEBETUNAMELIST.forEach((list) -> {
+                demoList.addElement(list);
+
+            });
+            add.dataBaseList.setModel(demoList);
+
+        }
+
         add.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_datebaseActionPerformed
@@ -378,7 +401,7 @@ public class Main extends javax.swing.JFrame {
 
         String diretoryPath = fileChooser.getDirectory(this);
         if (diretoryPath.isEmpty()) {
-            dialog.popDialog("フォルダを選択してください", false);
+            dialog.popDialog(ConmentMessage.CHOOSEPLEASE, false);
         } else {
             path.setText(diretoryPath);
             output.setEnabled(true);
@@ -391,7 +414,6 @@ public class Main extends javax.swing.JFrame {
         Output out = new Output();
         if (selectedList.getModel().getSize() != 0) {
             //出力
-            //selectedTable List ,path
 
             String outPath = path.getText() + "\\";
             for (String tname : selectedName) {
@@ -399,13 +421,13 @@ public class Main extends javax.swing.JFrame {
                 status = flg;
             }
             if (status == true) {
-                dialog.popDialog("指定されたフォルダに出力しました", status);
+                dialog.popDialog(ConmentMessage.OUTPUTOK, status);
             } else {
-                dialog.popDialog("指定されたフォルダに出力失敗しました", status);
+                dialog.popDialog(ConmentMessage.OUTPUTFAIL, status);
             }
 
         } else {
-            dialog.popDialog("選択した表がないです", false);
+            dialog.popDialog(ConmentMessage.NOSELECTEDTABLE, false);
         }
 
 
@@ -417,15 +439,12 @@ public class Main extends javax.swing.JFrame {
      * @param evt
      */
     private void tableListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableListMouseClicked
-        // TODO add your handling code here:
-        JDBCConnect jdbc = new JDBCConnect();
-        ArrayList<String> tableList = jdbc.getAllTableName();
-        //選択されたテーブル名取得次の画面に渡す
-        DefaultListModel demoList = new DefaultListModel();
-        tableList.forEach((list) -> {
-            demoList.addElement(list);
-        });
-        usedList.setModel(demoList);
+
+        String selectedDB = tableList.getSelectedValue();
+        String pwd = ConnectEntity.DIFFERENTDB.get(selectedDB + "pwd");
+
+        dialog.popLocalDBLogin(selectedDB, pwd);
+
     }//GEN-LAST:event_tableListMouseClicked
 
     /**
@@ -444,11 +463,11 @@ public class Main extends javax.swing.JFrame {
                 //選択されたテーブル名を取り除く
                 listModel.removeElement(deletedName);
             } else {
-                dialog.popDialog("削除したい表を選択してください", false);
+                dialog.popDialog(ConmentMessage.CHOOSEDELETATABLE, false);
             }
 
         } else {
-            dialog.popDialog("使用可能な表がないです", false);
+            dialog.popDialog(ConmentMessage.NOUSEDTABLE, false);
         }
 
 
@@ -473,11 +492,11 @@ public class Main extends javax.swing.JFrame {
                 });
                 selectedList.setModel(demoList);
             } else {
-                dialog.popDialog("追加したい表を選択してください", false);
+                dialog.popDialog(ConmentMessage.CHOOSEADDTABLE, false);
             }
 
         } else {
-            dialog.popDialog("使用可能な表がないです", false);
+            dialog.popDialog(ConmentMessage.NOUSEDTABLE, false);
         }
 
 
@@ -496,7 +515,7 @@ public class Main extends javax.swing.JFrame {
             selectedName.clear();
             listModel.removeAllElements();
         } else {
-            dialog.popDialog("削除するデータがないですよ", false);
+            dialog.popDialog(ConmentMessage.NODELETETABLE, false);
         }
 
 
@@ -514,11 +533,13 @@ public class Main extends javax.swing.JFrame {
 
             for (int i = 0; i < usedList.getModel().getSize(); i++) {
                 demoList.addElement(usedList.getModel().getElementAt(i));
+                selectedName.add(usedList.getModel().getElementAt(i));
+
             }
 
             selectedList.setModel(demoList);
         } else {
-            dialog.popDialog("使用可能な表がないです", false);
+            dialog.popDialog(ConmentMessage.NOUSEDTABLE, false);
         }
 
     }//GEN-LAST:event_allAddActionPerformed
@@ -588,12 +609,13 @@ public class Main extends javax.swing.JFrame {
     private java.awt.Menu menu4;
     private java.awt.MenuBar menuBar1;
     private java.awt.MenuBar menuBar2;
+    public static javax.swing.JLabel message;
     private javax.swing.JButton output;
     public javax.swing.JLabel path;
     private javax.swing.JList<String> selectedList;
     private javax.swing.JButton seletedOutput;
     public javax.swing.JList<String> tableList;
-    private javax.swing.JList<String> usedList;
+    public static javax.swing.JList<String> usedList;
     // End of variables declaration//GEN-END:variables
 
 }

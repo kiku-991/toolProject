@@ -7,6 +7,7 @@ package com.mycompany.view.utils;
 
 import com.mycompany.util.ConmentMessage;
 import com.mycompany.view.NewJDialog;
+import com.mycompany.view.DatabaseLogin;
 import javax.swing.ImageIcon;
 
 /**
@@ -36,6 +37,18 @@ public class DialogMessage {
 
         dilog.setVisible(true);
 
+    }
+
+    /**
+     * DBログイン
+     * @param pswd 
+     */
+    public void popLocalDBLogin(String title,String pswd) {
+        DatabaseLogin login = new DatabaseLogin();
+        login.setTitle(title);
+        login.uname.setText("postgres");
+        login.pwd.setText(pswd);
+        login.setVisible(true);
     }
 
 }
