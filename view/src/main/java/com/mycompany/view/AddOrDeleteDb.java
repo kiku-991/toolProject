@@ -8,11 +8,13 @@ package com.mycompany.view;
 import com.mycompany.model.ConnectEntity;
 import com.mycompany.util.ConmentMessage;
 import com.mycompany.util.JDBCConnect;
+import com.mycompany.util.Node;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -170,23 +172,27 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
      */
     private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
 
-        try {
-            JDBCConnect.connect.closeDBcon();
-        } catch (SQLException ex) {
-            Logger.getLogger(AddOrDeleteDb.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.dispose();
         Main m = new Main();
 
         DefaultListModel demoList = new DefaultListModel();
         // ArrayList<String> tableList = new ArrayList<>();
 
-        ConnectEntity.DATABASEBETUNAMELIST.forEach((list) -> {
-            demoList.addElement(list);
-        });
+        if (ConnectEntity.DATABASEBETUNAMELIST != null) {
+            try {
+                JDBCConnect.connect.closeDBcon();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddOrDeleteDb.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ConnectEntity.DATABASEBETUNAMELIST.forEach((list) -> {
+                demoList.addElement(list);
+            });
+        }
 
+        this.dispose();
+        String dbn = ConnectEntity.DATABASEBETUNAME.replace("localhost/", "");
+        DefaultTreeModel mm = Node.Model(dbn);
         m.tableList.setModel(demoList);
-
+        m.Jtree.setModel(mm);
         m.setVisible(true);
 
     }//GEN-LAST:event_closeActionPerformed
@@ -211,7 +217,7 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

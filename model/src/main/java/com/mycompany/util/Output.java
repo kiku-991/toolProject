@@ -22,8 +22,6 @@ import java.util.logging.Logger;
  */
 public class Output {
 
-    JDBCConnect jdbc = new JDBCConnect();
-
     /**
      * テーブルのタイプとカラム名取得
      *
@@ -31,7 +29,7 @@ public class Output {
      * @param path
      * @return list
      */
-    public boolean getColumnAndType(String tableName, String path) {
+    public boolean getColumnAndType(String tableName, String path, String databaseName, String username, String pwd) {
 
         boolean flg = false;
         Statement stmt = null;
@@ -41,7 +39,7 @@ public class Output {
         Map<String, String> map = new HashMap<>();
         try {
 
-            stmt = jdbc.getConn();
+            stmt = JDBCConnect.connect.getDBConn(databaseName,username,pwd);
 
             String coulmnSql = "SELECT\n"
                     + "    a.attname as name\n"

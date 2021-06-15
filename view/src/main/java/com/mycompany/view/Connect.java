@@ -10,7 +10,6 @@ import com.mycompany.util.ConmentMessage;
 import com.mycompany.util.JDBCConnect;
 import com.mycompany.view.utils.DialogMessage;
 import java.sql.Statement;
-import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 /**
@@ -372,7 +371,7 @@ public class Connect extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton PostgreSQL;
     private javax.swing.JButton cancel;
-    private javax.swing.JTextField datebaseName;
+    public javax.swing.JTextField datebaseName;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -386,9 +385,9 @@ public class Connect extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton ok;
-    private javax.swing.JTextField password;
-    private javax.swing.JTextField serverName;
+    public javax.swing.JTextField password;
+    public javax.swing.JTextField serverName;
     private javax.swing.JButton testConnect;
-    private javax.swing.JTextField userName;
+    public javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
 }

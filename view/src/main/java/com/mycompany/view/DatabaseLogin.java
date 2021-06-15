@@ -5,6 +5,7 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.model.ConnectEntity;
 import com.mycompany.util.ConmentMessage;
 import com.mycompany.util.JDBCConnect;
 import com.mycompany.view.utils.DialogMessage;
@@ -150,9 +151,9 @@ public class DatabaseLogin extends javax.swing.JFrame {
 
 
     private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
-        // TODO add your handling code here:
         //getcon
-        ArrayList<String> tableList = JDBCConnect.connect.getAllTableName();
+        String databaseName = ConnectEntity.DIFFERENTDB.get(this.getTitle()+"dbname");
+        ArrayList<String> tableList = JDBCConnect.connect.getAllTableList(databaseName,uname.getText(),pwd.getText());
         DialogMessage dialog = new DialogMessage();
         if (tableList != null) {
             dialog.popDialog(ConmentMessage.CONNECT_SUCCESSFUL, true);
@@ -163,6 +164,8 @@ public class DatabaseLogin extends javax.swing.JFrame {
             });
 
             Main.usedList.setModel(demoList);
+
+            
         } else {
             dialog.popDialog(ConmentMessage.CONNECT_FAIL, false);
         }

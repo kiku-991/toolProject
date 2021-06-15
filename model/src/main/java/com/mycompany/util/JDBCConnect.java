@@ -60,7 +60,7 @@ public class JDBCConnect {
         //データベース別名List
         ConnectEntity.DATABASEBETUNAMELIST = dataNameList;
         
-        differentDB.put(ConnectEntity.DATABASEBETUNAME+"dbname", ConnectEntity.PASSWORD);
+        differentDB.put(ConnectEntity.DATABASEBETUNAME+"dbname", ConnectEntity.DATABASENAME);
         differentDB.put(ConnectEntity.DATABASEBETUNAME+"uname", ConnectEntity.USERNAME);
         differentDB.put(ConnectEntity.DATABASEBETUNAME+"pwd", ConnectEntity.PASSWORD);
         
@@ -126,6 +126,69 @@ public class JDBCConnect {
         try {
             //PostgreSQLへ接続
             getConn();
+            rset = stmt.executeQuery(sql);
+            //SELECT結果の受け取り
+            while (rset.next()) {
+                String col = rset.getString(1);
+                tableList.add(col);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return tableList;
+
+    }
+    
+    
+    /**
+     * ログイン
+     * @param databaseName
+     * @param username
+     * @param pwd
+     * @return 
+     */
+    public Statement getDBConn(String databaseName,String username,String pwd) {
+           //ドライバー
+        String driver = ConmentMessage.DRIVER;
+        // String url = "jdbc:postgresql://" + sname + ":" + portNum + "/" + dbname;
+        String jdbcUrl = ConmentMessage.JDBCURL + databaseName;
+        try {
+            Class.forName(driver);
+            conn = (Connection) DriverManager.getConnection(jdbcUrl, username, pwd);
+            stmt = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return stmt;
+   
+    }
+    
+    
+     /**
+     * すべてのテーブル名を取得
+     *
+     * @param databaseName
+     * @param username
+     * @param pwd
+     * @return tableList
+     */
+    public ArrayList<String> getAllTableList(String databaseName,String username,String pwd) {
+
+        ArrayList<String> tableList = new ArrayList<>();
+        //すべてのテーブルを取得sql
+        String sql = "select\r\n"
+                + "    tablename \r\n"
+                + "from\r\n"
+                + "    pg_tables \r\n"
+                + "where\r\n"
+                + "    schemaname = 'public'";
+        try {
+            //PostgreSQLへ接続
+            getDBConn(databaseName,username,pwd);
             rset = stmt.executeQuery(sql);
             //SELECT結果の受け取り
             while (rset.next()) {
