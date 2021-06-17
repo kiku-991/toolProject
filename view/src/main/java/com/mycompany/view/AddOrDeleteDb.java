@@ -6,14 +6,14 @@
 package com.mycompany.view;
 
 import com.mycompany.model.ConnectEntity;
+import com.mycompany.model.DataBaseInfo;
 import com.mycompany.util.ConmentMessage;
-import com.mycompany.util.JDBCConnect;
 import com.mycompany.util.Node;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.mycompany.view.utils.DialogMessage;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
@@ -28,7 +28,12 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         initComponents();
         //中央設置
         this.setLocationRelativeTo(null);
+        delete.setEnabled(false);
+        modify.setEnabled(false);
+
     }
+
+    DialogMessage dialog = new DialogMessage();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,6 +80,11 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         });
 
         modify.setText("修正");
+        modify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyActionPerformed(evt);
+            }
+        });
 
         db.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +169,8 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
 
     private void dataBaseListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataBaseListMouseClicked
 
+        delete.setEnabled(true);
+        modify.setEnabled(true);
         String selected = dataBaseList.getSelectedValue();
         String dbName = selected.replace(ConmentMessage.LOCALHOST, ConmentMessage.BLANK);
         db.setText(ConmentMessage.DATABESEINFO + dbName);
@@ -175,23 +187,22 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         Main m = new Main();
 
         DefaultListModel demoList = new DefaultListModel();
-        // ArrayList<String> tableList = new ArrayList<>();
+//        List<String> tableList = new ArrayList<>();
 
-        if (ConnectEntity.DATABASEBETUNAMELIST != null) {
-            try {
-                JDBCConnect.connect.closeDBcon();
-            } catch (SQLException ex) {
-                Logger.getLogger(AddOrDeleteDb.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            ConnectEntity.DATABASEBETUNAMELIST.forEach((list) -> {
+        if (DataBaseInfo.connect.getDatabaseAliasList() != null) {
+
+            DataBaseInfo.connect.getDatabaseAliasList().forEach((list) -> {
                 demoList.addElement(list);
+//                tableList.add(list);
             });
         }
 
         this.dispose();
-        String dbn = ConnectEntity.DATABASEBETUNAME.replace("localhost/", "");
-        DefaultTreeModel mm = Node.Model(dbn);
+        //String dbn = DataBaseInfo.connect.databaseAlias.replace("localhost/", "");
+//        DefaultTreeModel mm = Node.Model(dbn, tableList);
         m.tableList.setModel(demoList);
+        String dbn = DataBaseInfo.connect.getDatabaseName();
+        DefaultTreeModel mm = Node.Model(dbn);
         m.Jtree.setModel(mm);
         m.setVisible(true);
 
@@ -205,10 +216,27 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
 
         int index = dataBaseList.getSelectedIndex();
-        ((DefaultListModel) dataBaseList.getModel()).remove(index);
-        initComponents();
+        if (index != -1) {
+            ((DefaultListModel) dataBaseList.getModel()).remove(index);
+            initComponents();
+        } else {
+            dialog.popDialog("削除するデータベースがないです", false);
+        }
 
     }//GEN-LAST:event_deleteActionPerformed
+
+    private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
+        // TODO add your handling code here:
+        String dbname = dataBaseList.getSelectedValue();
+        if (dbname != null) {
+
+            ConnectRegiste con = new ConnectRegiste();
+            con.datebaseName.setText(ConnectEntity.DATABASENAME);
+            con.setVisible(true);
+        } else {
+            dialog.popDialog("修正したいデータベースを選択してください", false);
+        }
+    }//GEN-LAST:event_modifyActionPerformed
 
     /**
      * @param args the command line arguments

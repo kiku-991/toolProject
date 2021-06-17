@@ -5,9 +5,11 @@
  */
 package com.mycompany.util;
 
+import java.util.List;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 
 /**
  *
@@ -18,25 +20,82 @@ public class Node {
 
     }
 
-    public static DefaultMutableTreeNode insertNode(String name) {
+    /**
+     *
+     * 初期値
+     *
+     * @param databaseName
+     * @return
+     */
+    public static DefaultMutableTreeNode insertNode(String databaseName) {
 
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("データベース");
         DefaultMutableTreeNode mercury = new DefaultMutableTreeNode("localhost");
         root.add(mercury);
-
-        DefaultMutableTreeNode venus = new DefaultMutableTreeNode(name);
+        DefaultMutableTreeNode venus = new DefaultMutableTreeNode(databaseName);
         mercury.add(venus);
-        DefaultMutableTreeNode mars = new DefaultMutableTreeNode("public");
-        venus.add(mars);
+
+        return root;
+    }
+
+    /**
+     * 初期表示
+     *
+     * @param dbname
+     * @return
+     */
+    public static DefaultTreeModel Model(String dbname) {
+        DefaultMutableTreeNode root = insertNode(dbname);
+        JTree tree = new JTree(root);
+        DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
+        return model;
+
+    }
+
+    /**
+     * 接続したら、テーブル名表示される
+     *
+     * @param databaseName
+     * @param tableName
+     * @return
+     */
+    public static DefaultMutableTreeNode insertNode(String databaseName, List<String> tableName) {
+
+        DefaultMutableTreeNode root = insertNode(databaseName);
+
+        for (String tbn : tableName) {
+            DefaultMutableTreeNode table = new DefaultMutableTreeNode(tbn);
+            root.add(table);
+        }
         return root;
 
     }
 
-    public static DefaultTreeModel Model(String name) {
-        DefaultMutableTreeNode xx = insertNode(name);
-        JTree tree = new JTree(xx);
+    /**
+     * 接続したら、表示
+     *
+     * @param dbname
+     * @param tableName
+     * @return
+     */
+    public static DefaultTreeModel Model(String dbname, List<String> tableName) {
+//        DefaultMutableTreeNode root = insertNode(dbname);
+        DefaultMutableTreeNode add = insertNode(dbname, tableName);
+        JTree tree = new JTree(add);
         DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
         return model;
+
+    }
+
+    public static MutableTreeNode children(List<String> tableName) {
+
+        DefaultMutableTreeNode tables = new DefaultMutableTreeNode("public");
+        for (String tbn : tableName) {
+            DefaultMutableTreeNode table = new DefaultMutableTreeNode(tbn);
+            tables.add(table);
+        }
+
+        return tables;
 
     }
 

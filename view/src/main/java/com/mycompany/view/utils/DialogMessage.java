@@ -24,7 +24,6 @@ public class DialogMessage {
 
         ImageIcon oKIcon = new ImageIcon(ConmentMessage.INFOICON);
         ImageIcon attentionIcon = new ImageIcon(ConmentMessage.ATTETIONICON);
-
         NewJDialog dilog = new NewJDialog();
         if (flg == false) {
             //setIcon
@@ -41,9 +40,10 @@ public class DialogMessage {
 
     /**
      * DBログイン
-     * @param pswd 
+     *
+     * @param pswd
      */
-    public void popLocalDBLogin(String title,String pswd) {
+    public void popLocalDBLogin(String title, String pswd) {
         DatabaseLogin login = new DatabaseLogin();
         login.setTitle(title);
         login.uname.setText("postgres");

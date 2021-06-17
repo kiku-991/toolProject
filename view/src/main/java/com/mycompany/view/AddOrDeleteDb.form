@@ -105,6 +105,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x4fee;&#x6b63;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modifyActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="db">
       <Events>

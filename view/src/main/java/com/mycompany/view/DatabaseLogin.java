@@ -5,12 +5,17 @@
  */
 package com.mycompany.view;
 
-import com.mycompany.model.ConnectEntity;
+import com.mycompany.model.DataBaseInfo;
 import com.mycompany.util.ConmentMessage;
 import com.mycompany.util.JDBCConnect;
+import com.mycompany.util.Node;
 import com.mycompany.view.utils.DialogMessage;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 
 /**
  *
@@ -45,7 +50,7 @@ public class DatabaseLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jCheckBox2 = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
         jLabel1.setText("パスワード：");
@@ -149,11 +154,12 @@ public class DatabaseLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
         //getcon
-        String databaseName = ConnectEntity.DIFFERENTDB.get(this.getTitle()+"dbname");
-        ArrayList<String> tableList = JDBCConnect.connect.getAllTableList(databaseName,uname.getText(),pwd.getText());
+
+        List<String> tableName = new ArrayList<>();
+        String databaseName = DataBaseInfo.connect.getDatabaseName();
+        ArrayList<String> tableList = JDBCConnect.connect.getAllTableList(databaseName, uname.getText(), pwd.getText());
         DialogMessage dialog = new DialogMessage();
         if (tableList != null) {
             dialog.popDialog(ConmentMessage.CONNECT_SUCCESSFUL, true);
@@ -161,17 +167,27 @@ public class DatabaseLogin extends javax.swing.JFrame {
             DefaultListModel demoList = new DefaultListModel();
             tableList.forEach((list) -> {
                 demoList.addElement(list);
+                tableName.add(list);
+
             });
+
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) Main.Jtree.getSelectionPath().getLastPathComponent();
+
+            System.out.println(node.getParent().getIndex(node));
+            DefaultTreeModel mm = Node.Model(databaseName, tableName);
+//            node.add(mm);
+            MutableTreeNode xx = Node.children(tableName);
+
+            node.add(xx);
+            // Main.Jtree.setModel(mm);
 
             Main.usedList.setModel(demoList);
 
-            
         } else {
             dialog.popDialog(ConmentMessage.CONNECT_FAIL, false);
         }
 
         this.dispose();
-
 
     }//GEN-LAST:event_connectActionPerformed
 
@@ -187,7 +203,6 @@ public class DatabaseLogin extends javax.swing.JFrame {
 
         this.dispose();
 
-
     }//GEN-LAST:event_cancelActionPerformed
 
     /**
@@ -197,7 +212,7 @@ public class DatabaseLogin extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

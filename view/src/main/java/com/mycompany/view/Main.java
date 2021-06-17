@@ -5,10 +5,10 @@
  */
 package com.mycompany.view;
 
-import com.mycompany.model.ConnectEntity;
+import com.mycompany.model.DataBaseInfo;
 import com.mycompany.util.ConmentMessage;
 import com.mycompany.util.FileChoose;
-import com.mycompany.util.Output;
+import com.mycompany.util.TemplateReader;
 import com.mycompany.view.utils.DialogMessage;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -16,6 +16,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 /**
@@ -30,6 +31,10 @@ public class Main extends javax.swing.JFrame {
     DefaultMutableTreeNode node;
 
     ArrayList<String> selectedName = new ArrayList<>();
+    //Icon 設定
+    Icon leafIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\database-table-icon.png");
+    Icon openIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\database_32.png");
+    Icon closedIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Data-Grid-icon_16.png");
 
     /**
      * Creates new form Main
@@ -40,6 +45,13 @@ public class Main extends javax.swing.JFrame {
         output.setEnabled(false);
 
         this.setLocationRelativeTo(null);
+        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) Jtree.getCellRenderer();
+
+        renderer.setLeafIcon(leafIcon);
+
+        renderer.setClosedIcon(closedIcon);
+
+        renderer.setOpenIcon(openIcon);
 
     }
 
@@ -88,7 +100,8 @@ public class Main extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        sqlRun = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -250,6 +263,16 @@ public class Main extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("データベース");
         Jtree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        Jtree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JtreeMouseClicked(evt);
+            }
+        });
+        Jtree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                JtreeValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(Jtree);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -322,8 +345,17 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("SQL");
-        jMenuBar1.add(jMenu4);
+        sqlRun.setText("SQL");
+
+        jMenuItem6.setText("SQL実行");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        sqlRun.add(jMenuItem6);
+
+        jMenuBar1.add(sqlRun);
 
         setJMenuBar(jMenuBar1);
 
@@ -375,8 +407,8 @@ public class Main extends javax.swing.JFrame {
 
         AddOrDeleteDb add = new AddOrDeleteDb();
         DefaultListModel demoList = new DefaultListModel();
-        if (ConnectEntity.DATABASEBETUNAMELIST != null) {
-            ConnectEntity.DATABASEBETUNAMELIST.forEach((list) -> {
+        if (DataBaseInfo.connect.getDatabaseAliasList() != null) {
+            DataBaseInfo.connect.getDatabaseAliasList().forEach((list) -> {
                 demoList.addElement(list);
             });
             add.dataBaseList.setModel(demoList);
@@ -416,13 +448,11 @@ public class Main extends javax.swing.JFrame {
 
     private void outputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputActionPerformed
 
-        String selected = tableList.getSelectedValue();
-
-        String databaseName = ConnectEntity.DIFFERENTDB.get(selected + "dbname");
-        String username = ConnectEntity.DIFFERENTDB.get(selected + "uname");
-        String pwd = ConnectEntity.DIFFERENTDB.get(selected + "pwd");
+        String databaseName = DataBaseInfo.connect.getDatabaseName();
+        String username = DataBaseInfo.connect.getUserName();
+        String pwd = DataBaseInfo.connect.getPassword();
         boolean status = false;
-        Output out = new Output();
+        TemplateReader out = new TemplateReader();
         if (selectedList.getModel().getSize() != 0) {
             //出力
             String outPath = path.getText() + "\\";
@@ -449,7 +479,7 @@ public class Main extends javax.swing.JFrame {
     private void tableListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableListMouseClicked
 
         String selectedDB = tableList.getSelectedValue();
-        String pwd = ConnectEntity.DIFFERENTDB.get(selectedDB + "pwd");
+        String pwd = DataBaseInfo.connect.getPassword();
 
         dialog.popLocalDBLogin(selectedDB, pwd);
 
@@ -554,16 +584,6 @@ public class Main extends javax.swing.JFrame {
         //create node
         //Create the nodes.
         //Jtree.setModel(Node.Model());
-        //Icon 設定
-        Icon leafIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\add_16.png");
-        Icon openIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Knob-Forward-icon.png");
-        Icon closedIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Knob-Play-Green-icon.png");
-
-        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) Jtree.getCellRenderer();
-        renderer.setLeafIcon(leafIcon);
-        renderer.setClosedIcon(closedIcon);
-        renderer.setOpenIcon(openIcon);
-
         DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) Jtree.getSelectionPath().getLastPathComponent();
 
         if (selectedNode != Jtree.getModel().getRoot()) {
@@ -582,6 +602,35 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void JtreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_JtreeValueChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_JtreeValueChanged
+
+    private void JtreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtreeMouseClicked
+        // TODO add your handling code here:
+
+        TreePath[] treePaths = Jtree.getSelectionModel().getSelectionPaths();
+        for (TreePath treePath : treePaths) {
+            DefaultMutableTreeNode selectedElement = (DefaultMutableTreeNode) treePath.getLastPathComponent();
+            Object userObject = selectedElement.getUserObject();
+            if (userObject.equals(DataBaseInfo.connect.getDatabaseName())) {
+                // String selectedDB = tableList.getSelectedValue();
+                String pwd = DataBaseInfo.connect.getPassword();
+
+                dialog.popLocalDBLogin(DataBaseInfo.connect.getDatabaseName(), pwd);
+
+            }//Do what you want with selected element's user object
+        }
+
+    }//GEN-LAST:event_JtreeMouseClicked
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        SqlRun sql = new SqlRun();
+        sql.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -596,16 +645,24 @@ public class Main extends javax.swing.JFrame {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -618,7 +675,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTree Jtree;
+    public static javax.swing.JTree Jtree;
     private javax.swing.JButton add;
     private javax.swing.JButton allAdd;
     private javax.swing.JButton allDelete;
@@ -629,13 +686,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -653,6 +710,7 @@ public class Main extends javax.swing.JFrame {
     public javax.swing.JLabel path;
     private javax.swing.JList<String> selectedList;
     private javax.swing.JButton seletedOutput;
+    private javax.swing.JMenu sqlRun;
     public javax.swing.JList<String> tableList;
     public static javax.swing.JList<String> usedList;
     // End of variables declaration//GEN-END:variables

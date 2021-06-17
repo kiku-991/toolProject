@@ -127,7 +127,7 @@ public class DataBaseType extends javax.swing.JFrame {
 
     private void postgreSQLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postgreSQLActionPerformed
         // TODO add your handling code here:
-        Connect con = new Connect();
+        ConnectRegiste con = new ConnectRegiste();
         con.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_postgreSQLActionPerformed

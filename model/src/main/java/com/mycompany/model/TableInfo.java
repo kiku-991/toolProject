@@ -5,6 +5,7 @@
  */
 package com.mycompany.model;
 
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,9 +19,9 @@ public class TableInfo {
     //テーブル名
     public String tableName;
     //カラム名
-    public String column;
+    public String columnName;
     //型
-    public Object type;
+    public Object dataType;
     //コメント
     public String comment;
 

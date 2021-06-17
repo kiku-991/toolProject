@@ -1,0 +1,24 @@
+package ${packageName};
+
+#foreach($tt in $list)
+#if(${tt.dataType}=='Date')
+import java.sql.Date;
+#break
+#end
+#end
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = ${dbname})
+public class ${javaClazz} {
+
+#foreach($data in $list)
+    //${data.comment}
+    private ${data.dataType} ${data.columnName};
+#end
+
+}
