@@ -32,6 +32,9 @@ public class ConmentMessage {
     public static final String CHOOSEADDTABLE = "追加したい表を選択してください";
     public static final String NODELETETABLE = "削除するデータがないですよ";
     public static final String NOSELECTEDTABLE = "選択した表がないです";
-    
+    public static final String MODIFYTABLE = "修正したいデータベースを選択してください";
+    public static final String DATABASE = "データベース";
+    public static final String HOST = "localhost";
+    public static final String PUBLIC = "public";
 
 }

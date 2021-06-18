@@ -6,6 +6,7 @@
 package com.mycompany.util;
 
 import com.mycompany.model.DataBaseInfo;
+import com.mycompany.model.TableInfo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,6 +34,7 @@ public class JDBCConnect {
     ResultSet rset;
 
     List<String> dataNameList = new ArrayList<>();
+    List<TableInfo> tableInfoList = new ArrayList<>();
 
     /**
      * データベース接続
@@ -93,18 +95,42 @@ public class JDBCConnect {
      * @param databaseName
      * @param userName
      * @param pwd
-     * @param sql
+     * @param tableName
      * @return
      */
-    public ResultSet executeSql(String databaseName, String userName, String pwd, String sql) {
+    public List<TableInfo> SqlRun(String databaseName, String userName, String pwd, String tableName) {
 
         try {
-            rset = getConn(databaseName, userName, pwd).executeQuery(sql);
+            String coulmnSql = "SELECT\n"
+                    + "    a.attname as name\n"
+                    + "    , format_type(a.atttypid, a.atttypmod) as type\n"
+                    + "FROM\n"
+                    + "    pg_class as c\n"
+                    + "    , pg_attribute as a \n"
+                    + "where\n"
+                    + "    c.relname = " + "'" + tableName + "'" + "\n"
+                    + "    and a.attrelid = c.oid \n"
+                    + "    and a.attnum > 0";
+            rset = getConn(databaseName, userName, pwd).executeQuery(coulmnSql);
+            //SELECT結果の受け取り
+
+            while (rset.next()) {
+                TableInfo tableInfo = new TableInfo();
+                //获取数据类型
+                String name = rset.getString(1);
+                tableInfo.setColumnName(name);
+                //获取字段名称
+                Object type = rset.getString(2);
+                String dtype = TemplateReader.classCast(type);
+                tableInfo.setDataType(dtype);
+                tableInfoList.add(tableInfo);
+
+            }
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return tableInfoList;
 
-        return rset;
     }
 
     /**
@@ -167,6 +193,39 @@ public class JDBCConnect {
 
         return tableList;
 
+    }
+
+    /**
+     * tableColumn数量を取得
+     *
+     * @param databaseName
+     * @param userName
+     * @param pwd
+     * @param tableName
+     * @return
+     */
+    public int getTableColumn(String databaseName, String userName, String pwd, String tableName) {
+
+        int count = 0;
+        try {
+            String sql = "select\n"
+                    + "    count(*) \n"
+                    + "from\n"
+                    + "    information_schema.COLUMNS \n"
+                    + "where\n"
+                    + "    table_name = '" + tableName + "'";
+            rset = getConn(databaseName, userName, pwd).executeQuery(sql);
+            //SELECT結果の受け取り
+            while (rset.next()) {
+                count = rset.getInt("count");
+                System.out.println(count);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return count;
     }
 
 }

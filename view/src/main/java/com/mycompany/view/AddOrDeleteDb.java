@@ -5,15 +5,11 @@
  */
 package com.mycompany.view;
 
-import com.mycompany.model.ConnectEntity;
 import com.mycompany.model.DataBaseInfo;
 import com.mycompany.util.ConmentMessage;
 import com.mycompany.util.Node;
 import com.mycompany.view.utils.DialogMessage;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
@@ -200,7 +196,7 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         this.dispose();
         //String dbn = DataBaseInfo.connect.databaseAlias.replace("localhost/", "");
 //        DefaultTreeModel mm = Node.Model(dbn, tableList);
-        m.tableList.setModel(demoList);
+
         String dbn = DataBaseInfo.connect.getDatabaseName();
         DefaultTreeModel mm = Node.Model(dbn);
         m.Jtree.setModel(mm);
@@ -220,7 +216,7 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
             ((DefaultListModel) dataBaseList.getModel()).remove(index);
             initComponents();
         } else {
-            dialog.popDialog("削除するデータベースがないです", false);
+            dialog.popDialog(ConmentMessage.NODELETETABLE, false);
         }
 
     }//GEN-LAST:event_deleteActionPerformed
@@ -231,10 +227,10 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         if (dbname != null) {
 
             ConnectRegiste con = new ConnectRegiste();
-            con.datebaseName.setText(ConnectEntity.DATABASENAME);
+            con.datebaseName.setText(DataBaseInfo.connect.getDatabaseName());
             con.setVisible(true);
         } else {
-            dialog.popDialog("修正したいデータベースを選択してください", false);
+            dialog.popDialog(ConmentMessage.MODIFYTABLE, false);
         }
     }//GEN-LAST:event_modifyActionPerformed
 

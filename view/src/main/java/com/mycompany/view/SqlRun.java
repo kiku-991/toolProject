@@ -6,12 +6,11 @@
 package com.mycompany.view;
 
 import com.mycompany.model.DataBaseInfo;
+import com.mycompany.model.TableInfo;
 import com.mycompany.util.JDBCConnect;
-import com.mycompany.view.utils.Highlight;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.mycompany.view.utils.DialogMessage;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 
@@ -27,6 +26,8 @@ public class SqlRun extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+
+    DialogMessage dialog = new DialogMessage();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,6 +54,7 @@ public class SqlRun extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SQL実行");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("SQL輸入"));
@@ -70,19 +72,14 @@ public class SqlRun extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "カラム名", "タイプ"
@@ -122,10 +119,7 @@ public class SqlRun extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -192,13 +186,10 @@ public class SqlRun extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -215,19 +206,24 @@ public class SqlRun extends javax.swing.JFrame {
         String uName = DataBaseInfo.connect.getUserName();
         String pwd = DataBaseInfo.connect.getPassword();
         String sql = inputSql.getText();
-        ResultSet res = JDBCConnect.connect.executeSql(dbName, uName, pwd, sql);
-        System.out.println(res);
-        try {
-            while (res.next()) {
-                String col = res.getString(1);
+        String tableName = sql.replace("select * from", "").trim();
+        System.out.println(tableName);
+        List<TableInfo> SqlRun = JDBCConnect.connect.SqlRun(dbName, uName, pwd, tableName);
+        if (SqlRun.isEmpty()) {
+            dialog.popDialog("検索エラー、正しいsqlを入力してください", false);
 
-                outputSql.setText(col);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            for (TableInfo ta : SqlRun) {
+                //取得したカラム名とデータタイプを Tableに設定
+                String cname = ta.getColumnName();
+                Object ctype = ta.getDataType();
+                Object bar[] = {cname, ctype};
+                model.addRow(bar);
+
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(SqlRun.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_runSqlActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -286,7 +282,7 @@ public class SqlRun extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea outputSql;
     private javax.swing.JButton runSql;

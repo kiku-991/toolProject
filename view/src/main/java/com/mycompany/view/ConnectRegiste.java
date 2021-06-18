@@ -5,7 +5,6 @@
  */
 package com.mycompany.view;
 
-import com.mycompany.model.ConnectEntity;
 import com.mycompany.model.DataBaseInfo;
 import com.mycompany.util.ConmentMessage;
 import com.mycompany.util.JDBCConnect;

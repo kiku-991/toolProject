@@ -29,8 +29,8 @@ public class Node {
      */
     public static DefaultMutableTreeNode insertNode(String databaseName) {
 
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("データベース");
-        DefaultMutableTreeNode mercury = new DefaultMutableTreeNode("localhost");
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(ConmentMessage.DATABASE);
+        DefaultMutableTreeNode mercury = new DefaultMutableTreeNode(ConmentMessage.HOST);
         root.add(mercury);
         DefaultMutableTreeNode venus = new DefaultMutableTreeNode(databaseName);
         mercury.add(venus);
@@ -89,7 +89,7 @@ public class Node {
 
     public static MutableTreeNode children(List<String> tableName) {
 
-        DefaultMutableTreeNode tables = new DefaultMutableTreeNode("public");
+        DefaultMutableTreeNode tables = new DefaultMutableTreeNode(ConmentMessage.PUBLIC);
         for (String tbn : tableName) {
             DefaultMutableTreeNode table = new DefaultMutableTreeNode(tbn);
             tables.add(table);

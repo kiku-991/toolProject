@@ -13,8 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +39,6 @@ public class TemplateReader {
 
         ArrayList<TableInfo> list = new ArrayList<>();
 
-        Map<String, String> map = new HashMap<>();
         try {
 
             stmt = JDBCConnect.connect.getDBConn(databaseName, username, pwd);
@@ -128,7 +125,7 @@ public class TemplateReader {
      * @param obj
      * @return
      */
-    private String classCast(Object obj) {
+    public static String classCast(Object obj) {
         String type = "";
         String str = (String) obj;
         if (str.equals("varchar") || str.equals("char") || str.equals("text")) {
