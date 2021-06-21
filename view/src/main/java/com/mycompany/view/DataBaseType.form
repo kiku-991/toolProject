@@ -29,10 +29,10 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel1" max="32767" attributes="0"/>
-                  <Component id="postgreSQL" alignment="1" pref="869" max="32767" attributes="0"/>
-                  <Component id="oracel" alignment="1" pref="869" max="32767" attributes="0"/>
-                  <Component id="sqlServer" alignment="1" max="32767" attributes="0"/>
-                  <Component id="mySql" alignment="1" pref="869" max="32767" attributes="0"/>
+                  <Component id="PostgreSQL" alignment="1" pref="869" max="32767" attributes="0"/>
+                  <Component id="Oracel" alignment="1" pref="869" max="32767" attributes="0"/>
+                  <Component id="SqlServer" alignment="1" max="32767" attributes="0"/>
+                  <Component id="MySql" alignment="1" pref="869" max="32767" attributes="0"/>
                   <Component id="message" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
@@ -45,15 +45,15 @@
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="jLabel1" pref="40" max="32767" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Component id="oracel" pref="68" max="32767" attributes="0"/>
+              <Component id="Oracel" pref="68" max="32767" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Component id="sqlServer" pref="68" max="32767" attributes="0"/>
+              <Component id="SqlServer" pref="68" max="32767" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="jLabel3" pref="40" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Component id="postgreSQL" pref="68" max="32767" attributes="0"/>
+              <Component id="PostgreSQL" pref="68" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="mySql" pref="68" max="32767" attributes="0"/>
+              <Component id="MySql" pref="68" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Component id="message" pref="96" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
@@ -62,38 +62,38 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="sqlServer">
+    <Component class="javax.swing.JButton" name="SqlServer">
       <Properties>
         <Property name="text" type="java.lang.String" value="Microsoft SQL Server"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="sqlServerMouseMoved"/>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="SqlServerMouseMoved"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="mySql">
+    <Component class="javax.swing.JButton" name="MySql">
       <Properties>
         <Property name="text" type="java.lang.String" value="MySQL&#xff08;&#x76f4;&#x63a5;&#x9023;&#x7d9a;&#xff09;"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="mySqlMouseMoved"/>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="MySqlMouseMoved"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="postgreSQL">
+    <Component class="javax.swing.JButton" name="PostgreSQL">
       <Properties>
         <Property name="text" type="java.lang.String" value="PostgreSQL&#xff08;&#x76f4;&#x63a5;&#x9023;&#x7d9a;&#xff09;"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="postgreSQLMouseMoved"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="postgreSQLActionPerformed"/>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="PostgreSQLMouseMoved"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PostgreSQLActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="oracel">
+    <Component class="javax.swing.JButton" name="Oracel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Oracle&#xff08;OCI&#x7d4c;&#x7531;or&#x76f4;&#x63a5;&#x9023;&#x7d9a;&#xff09;"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="oracelMouseMoved"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="oracelActionPerformed"/>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="OracelMouseMoved"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OracelActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

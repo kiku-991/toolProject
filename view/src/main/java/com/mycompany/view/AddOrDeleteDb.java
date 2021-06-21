@@ -24,8 +24,8 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         initComponents();
         //中央設置
         this.setLocationRelativeTo(null);
-        delete.setEnabled(false);
-        modify.setEnabled(false);
+        Delete.setEnabled(false);
+        Modify.setEnabled(false);
 
     }
 
@@ -40,51 +40,51 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        close = new javax.swing.JButton();
-        add = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
-        modify = new javax.swing.JButton();
-        db = new javax.swing.JTextField();
+        Close = new javax.swing.JButton();
+        Add = new javax.swing.JButton();
+        Delete = new javax.swing.JButton();
+        Modify = new javax.swing.JButton();
+        DB = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        dataBaseList = new javax.swing.JList<>();
+        DataBaseList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("データベースの追加と削除");
 
-        close.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\close_32.png")); // NOI18N
-        close.setText("閉じる");
-        close.addActionListener(new java.awt.event.ActionListener() {
+        Close.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\close_32.png")); // NOI18N
+        Close.setText("閉じる");
+        Close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeActionPerformed(evt);
+                CloseActionPerformed(evt);
             }
         });
 
-        add.setText("追加");
-        add.addActionListener(new java.awt.event.ActionListener() {
+        Add.setText("追加");
+        Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
+                AddActionPerformed(evt);
             }
         });
 
-        delete.setText("削除");
-        delete.addActionListener(new java.awt.event.ActionListener() {
+        Delete.setText("削除");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
+                DeleteActionPerformed(evt);
             }
         });
 
-        modify.setText("修正");
-        modify.addActionListener(new java.awt.event.ActionListener() {
+        Modify.setText("修正");
+        Modify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyActionPerformed(evt);
+                ModifyActionPerformed(evt);
             }
         });
 
-        db.addActionListener(new java.awt.event.ActionListener() {
+        DB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dbActionPerformed(evt);
+                DBActionPerformed(evt);
             }
         });
 
@@ -93,12 +93,12 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("データベースツリーでデータベース名を[/]で区切って階層構造で表示する");
 
-        dataBaseList.addMouseListener(new java.awt.event.MouseAdapter() {
+        DataBaseList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dataBaseListMouseClicked(evt);
+                DataBaseListMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(dataBaseList);
+        jScrollPane1.setViewportView(DataBaseList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,19 +109,19 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(add, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                        .addComponent(Add, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                         .addGap(29, 29, 29)
-                        .addComponent(modify, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                        .addComponent(Modify, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                         .addGap(38, 38, 38)
-                        .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                        .addComponent(Delete, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                         .addGap(452, 452, 452)
-                        .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                        .addComponent(Close, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(db, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DB, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(45, 45, 45))))
         );
@@ -132,53 +132,53 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                 .addGap(42, 42, 42)
-                .addComponent(db, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(DB, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addGap(27, 27, 27)
                 .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(modify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(close, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Modify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Close, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dbActionPerformed
+    private void DBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DBActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dbActionPerformed
+    }//GEN-LAST:event_DBActionPerformed
 
     /**
      * 追加
      *
      * @param evt
      */
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
 
         DataBaseType type = new DataBaseType();
         type.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_addActionPerformed
+    }//GEN-LAST:event_AddActionPerformed
 
-    private void dataBaseListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dataBaseListMouseClicked
+    private void DataBaseListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DataBaseListMouseClicked
 
-        delete.setEnabled(true);
-        modify.setEnabled(true);
-        String selected = dataBaseList.getSelectedValue();
+        Delete.setEnabled(true);
+        Modify.setEnabled(true);
+        String selected = DataBaseList.getSelectedValue();
         String dbName = selected.replace(ConmentMessage.LOCALHOST, ConmentMessage.BLANK);
-        db.setText(ConmentMessage.DATABESEINFO + dbName);
+        DB.setText(ConmentMessage.DATABESEINFO + dbName);
 
-    }//GEN-LAST:event_dataBaseListMouseClicked
+    }//GEN-LAST:event_DataBaseListMouseClicked
 
     /**
      * 閉じる
      *
      * @param evt
      */
-    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
 
         Main m = new Main();
 
@@ -202,37 +202,37 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
         m.Jtree.setModel(mm);
         m.setVisible(true);
 
-    }//GEN-LAST:event_closeActionPerformed
+    }//GEN-LAST:event_CloseActionPerformed
 
     /**
      * 削除
      *
      * @param evt
      */
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
 
-        int index = dataBaseList.getSelectedIndex();
+        int index = DataBaseList.getSelectedIndex();
         if (index != -1) {
-            ((DefaultListModel) dataBaseList.getModel()).remove(index);
+            ((DefaultListModel) DataBaseList.getModel()).remove(index);
             initComponents();
         } else {
             dialog.popDialog(ConmentMessage.NODELETETABLE, false);
         }
 
-    }//GEN-LAST:event_deleteActionPerformed
+    }//GEN-LAST:event_DeleteActionPerformed
 
-    private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
+    private void ModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifyActionPerformed
         // TODO add your handling code here:
-        String dbname = dataBaseList.getSelectedValue();
+        String dbname = DataBaseList.getSelectedValue();
         if (dbname != null) {
 
             ConnectRegiste con = new ConnectRegiste();
-            con.datebaseName.setText(DataBaseInfo.connect.getDatabaseName());
+            con.DatebaseName.setText(DataBaseInfo.connect.getDatabaseName());
             con.setVisible(true);
         } else {
             dialog.popDialog(ConmentMessage.MODIFYTABLE, false);
         }
-    }//GEN-LAST:event_modifyActionPerformed
+    }//GEN-LAST:event_ModifyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,14 +270,14 @@ public class AddOrDeleteDb extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton add;
-    private javax.swing.JButton close;
-    public javax.swing.JList<String> dataBaseList;
-    public javax.swing.JTextField db;
-    private javax.swing.JButton delete;
+    private javax.swing.JButton Add;
+    private javax.swing.JButton Close;
+    public javax.swing.JTextField DB;
+    public javax.swing.JList<String> DataBaseList;
+    private javax.swing.JButton Delete;
+    private javax.swing.JButton Modify;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton modify;
     // End of variables declaration//GEN-END:variables
 }

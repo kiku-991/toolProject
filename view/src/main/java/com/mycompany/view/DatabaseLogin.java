@@ -194,7 +194,7 @@ public class DatabaseLogin extends javax.swing.JFrame {
             //refresh node
             model.reload(node);
             // Main.Jtree.setModel(mm);
-            Main.usedList.setModel(demoList);
+            Main.UsedList.setModel(demoList);
             DataBaseInfo.connect.status = 1;
 
         } else {

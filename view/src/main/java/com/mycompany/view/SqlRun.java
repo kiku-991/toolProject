@@ -6,7 +6,8 @@
 package com.mycompany.view;
 
 import com.mycompany.model.DataBaseInfo;
-import com.mycompany.model.TableInfo;
+import com.mycompany.util.ConmentMessage;
+import com.mycompany.util.FileMethod;
 import com.mycompany.util.JDBCConnect;
 import com.mycompany.view.utils.DialogMessage;
 import java.awt.Color;
@@ -14,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
 
 /**
  *
@@ -30,6 +30,8 @@ public class SqlRun extends javax.swing.JFrame {
     }
 
     DialogMessage dialog = new DialogMessage();
+
+    FileMethod fileMethod = new FileMethod();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,8 +51,10 @@ public class SqlRun extends javax.swing.JFrame {
         runSql = new javax.swing.JButton();
         output = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        fileChoose = new javax.swing.JButton();
+        path = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SQL実行");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -69,7 +73,7 @@ public class SqlRun extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
         );
 
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -111,18 +115,19 @@ public class SqlRun extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
         jLabel1.setText("例:select * from tableName");
 
+        fileChoose.setText("ファイル選択");
+        fileChoose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileChooseActionPerformed(evt);
+            }
+        });
+
+        path.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(runSql, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                .addGap(49, 49, 49)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(436, 436, 436)
-                .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -130,16 +135,34 @@ public class SqlRun extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(9, 9, 9))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(runSql, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                        .addGap(305, 305, 305)
+                        .addComponent(fileChoose)
+                        .addGap(34, 34, 34)
+                        .addComponent(path, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                        .addGap(182, 182, 182)
+                        .addComponent(output, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(runSql, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                        .addComponent(output, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fileChoose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(path, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(output, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(runSql, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(29, 29, 29)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -165,18 +188,16 @@ public class SqlRun extends javax.swing.JFrame {
         String tableName = sql.replace("select * from", "").trim();
         System.out.println(tableName);
 
-        //列数
-        // int count = JDBCConnect.connect.GetResultCount(dbName, uName, pwd, sql);
         //列名
         List<String> colunmName = JDBCConnect.connect.getColumnName(dbName, uName, pwd, tableName);
-        //列値
-        List< List<String>> columnvalue = JDBCConnect.connect.GetResult(dbName, uName, pwd, sql);
 
         DefaultTableModel resu = (DefaultTableModel) resultTable.getModel();
         //列名設定
         String[] array = colunmName.toArray(new String[colunmName.size()]);
         resu.setColumnIdentifiers(array);
-
+        //列値
+        List< List<String>> columnvalue = JDBCConnect.connect.GetResult(dbName, uName, pwd, sql);
+        //列値設定
         for (List<String> s : columnvalue) {
             String[] toArray = s.toArray(new String[s.size()]);
             resu.addRow(toArray);
@@ -192,9 +213,20 @@ public class SqlRun extends javax.swing.JFrame {
 
     private void outputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputActionPerformed
 
-        resultTable.getModel();
-
+        boolean flg = fileMethod.toCsv(path.getText(), resultTable);
+        if (flg == true) {
+            dialog.popDialog(ConmentMessage.OUTPUTOK, flg);
+        } else {
+            dialog.popDialog(ConmentMessage.OUTPUTFAIL, flg);
+        }
     }//GEN-LAST:event_outputActionPerformed
+
+    private void fileChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooseActionPerformed
+
+        String p = fileMethod.getDirectory(this);
+        path.setText(p);
+
+    }//GEN-LAST:event_fileChooseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,6 +265,7 @@ public class SqlRun extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton fileChoose;
     private javax.swing.JTextArea inputSql;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -240,6 +273,7 @@ public class SqlRun extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton output;
+    private javax.swing.JLabel path;
     private javax.swing.JTable resultTable;
     private javax.swing.JButton runSql;
     // End of variables declaration//GEN-END:variables

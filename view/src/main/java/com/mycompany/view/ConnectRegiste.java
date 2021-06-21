@@ -47,15 +47,15 @@ public class ConnectRegiste extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         serverName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        datebaseName = new javax.swing.JTextField();
-        userName = new javax.swing.JTextField();
+        PostCode = new javax.swing.JTextField();
+        DatebaseName = new javax.swing.JTextField();
+        UserName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
+        Password = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
-        ok = new javax.swing.JButton();
-        cancel = new javax.swing.JButton();
+        Ok = new javax.swing.JButton();
+        Cancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("データベースの内容を登録");
@@ -110,18 +110,18 @@ public class ConnectRegiste extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
         jLabel4.setText("ポート番号");
 
-        jTextField2.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
-        jTextField2.setText("5432");
+        PostCode.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        PostCode.setText("5432");
 
-        datebaseName.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        DatebaseName.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
 
-        userName.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
-        userName.setText("postgres");
+        UserName.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        UserName.setText("postgres");
 
         jLabel5.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
         jLabel5.setText("パスワード");
 
-        password.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        Password.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
 
         jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
@@ -155,13 +155,13 @@ public class ConnectRegiste extends javax.swing.JFrame {
                                 .addGap(107, 107, 107)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(serverName)
-                                    .addComponent(datebaseName)
-                                    .addComponent(userName, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                                    .addComponent(password))))
+                                    .addComponent(DatebaseName)
+                                    .addComponent(UserName, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                                    .addComponent(Password))))
                         .addGap(31, 31, 31)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(PostCode, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(117, 117, 117))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -178,7 +178,7 @@ public class ConnectRegiste extends javax.swing.JFrame {
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
-                                .addComponent(jTextField2))
+                                .addComponent(PostCode))
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(17, 17, 17))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -190,20 +190,20 @@ public class ConnectRegiste extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(datebaseName, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)))
+                        .addComponent(DatebaseName, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(userName, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
+                        .addComponent(UserName, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
+                    .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE))
                 .addGap(56, 56, 56)
                 .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addGap(46, 46, 46))
@@ -224,21 +224,21 @@ public class ConnectRegiste extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("SSL", jPanel2);
 
-        ok.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
-        ok.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Knob-Valid-Green-icon.png")); // NOI18N
-        ok.setText("OK");
-        ok.addActionListener(new java.awt.event.ActionListener() {
+        Ok.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        Ok.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Knob-Valid-Green-icon.png")); // NOI18N
+        Ok.setText("OK");
+        Ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okActionPerformed(evt);
+                OkActionPerformed(evt);
             }
         });
 
-        cancel.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
-        cancel.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\close_32.png")); // NOI18N
-        cancel.setText("キャンセル");
-        cancel.addActionListener(new java.awt.event.ActionListener() {
+        Cancel.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
+        Cancel.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\close_32.png")); // NOI18N
+        Cancel.setText("キャンセル");
+        Cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelActionPerformed(evt);
+                CancelActionPerformed(evt);
             }
         });
 
@@ -250,9 +250,9 @@ public class ConnectRegiste extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(589, 589, 589)
-                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addComponent(cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(jTabbedPane1)))
@@ -265,8 +265,8 @@ public class ConnectRegiste extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1)
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Ok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Cancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -278,17 +278,17 @@ public class ConnectRegiste extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
+    private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
 
         //データベース名設定
         //  ConnectEntity.DATABASENAME = datebaseName.getText();
-        String databaseName = datebaseName.getText();
+        String databaseName = DatebaseName.getText();
         //ユーザ名設定
         //  ConnectEntity.USERNAME = userName.getText();
-        String username = userName.getText();
+        String username = UserName.getText();
         //パスワード設定
         //  ConnectEntity.PASSWORD = password.getText();
-        String pwd = password.getText();
+        String pwd = Password.getText();
 
         Statement st = JDBCConnect.connect.getConn(databaseName, username, pwd);
         AddOrDeleteDb db = new AddOrDeleteDb();
@@ -303,7 +303,7 @@ public class ConnectRegiste extends javax.swing.JFrame {
                 demoList.addElement(list);
             });
             //データベース別名設定
-            db.dataBaseList.setModel(demoList);
+            db.DataBaseList.setModel(demoList);
             db.setVisible(true);
         } else {
             //接続失敗場合
@@ -323,13 +323,13 @@ public class ConnectRegiste extends javax.swing.JFrame {
 //            dialog.popDialog(ConmentMessage.PLESECONNECT, false);
 //
 //        }
-    }//GEN-LAST:event_okActionPerformed
+    }//GEN-LAST:event_OkActionPerformed
 
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
         this.dispose();
         AddOrDeleteDb dbtp = new AddOrDeleteDb();
         dbtp.setVisible(true);
-    }//GEN-LAST:event_cancelActionPerformed
+    }//GEN-LAST:event_CancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,9 +370,13 @@ public class ConnectRegiste extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancel;
+    public javax.swing.JTextField DatebaseName;
+    private javax.swing.JButton Ok;
+    public javax.swing.JTextField Password;
+    private javax.swing.JTextField PostCode;
     private javax.swing.JRadioButton PostgreSQL;
-    private javax.swing.JButton cancel;
-    public javax.swing.JTextField datebaseName;
+    public javax.swing.JTextField UserName;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -384,10 +388,6 @@ public class ConnectRegiste extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton ok;
-    public javax.swing.JTextField password;
     public javax.swing.JTextField serverName;
-    public javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
 }

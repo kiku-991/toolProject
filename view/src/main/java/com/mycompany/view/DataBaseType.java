@@ -29,10 +29,10 @@ public class DataBaseType extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sqlServer = new javax.swing.JButton();
-        mySql = new javax.swing.JButton();
-        postgreSQL = new javax.swing.JButton();
-        oracel = new javax.swing.JButton();
+        SqlServer = new javax.swing.JButton();
+        MySql = new javax.swing.JButton();
+        PostgreSQL = new javax.swing.JButton();
+        Oracel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         message = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -40,41 +40,41 @@ public class DataBaseType extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("追加するデータベースの接続タイプを選択");
 
-        sqlServer.setText("Microsoft SQL Server");
-        sqlServer.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        SqlServer.setText("Microsoft SQL Server");
+        SqlServer.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                sqlServerMouseMoved(evt);
+                SqlServerMouseMoved(evt);
             }
         });
 
-        mySql.setText("MySQL（直接連続）");
-        mySql.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        MySql.setText("MySQL（直接連続）");
+        MySql.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                mySqlMouseMoved(evt);
+                MySqlMouseMoved(evt);
             }
         });
 
-        postgreSQL.setText("PostgreSQL（直接連続）");
-        postgreSQL.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        PostgreSQL.setText("PostgreSQL（直接連続）");
+        PostgreSQL.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                postgreSQLMouseMoved(evt);
+                PostgreSQLMouseMoved(evt);
             }
         });
-        postgreSQL.addActionListener(new java.awt.event.ActionListener() {
+        PostgreSQL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                postgreSQLActionPerformed(evt);
+                PostgreSQLActionPerformed(evt);
             }
         });
 
-        oracel.setText("Oracle（OCI経由or直接連続）");
-        oracel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        Oracel.setText("Oracle（OCI経由or直接連続）");
+        Oracel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                oracelMouseMoved(evt);
+                OracelMouseMoved(evt);
             }
         });
-        oracel.addActionListener(new java.awt.event.ActionListener() {
+        Oracel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oracelActionPerformed(evt);
+                OracelActionPerformed(evt);
             }
         });
 
@@ -95,10 +95,10 @@ public class DataBaseType extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(postgreSQL, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
-                    .addComponent(oracel, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
-                    .addComponent(sqlServer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mySql, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                    .addComponent(PostgreSQL, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                    .addComponent(Oracel, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                    .addComponent(SqlServer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MySql, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
                     .addComponent(message, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(61, 61, 61))
         );
@@ -108,15 +108,15 @@ public class DataBaseType extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(oracel, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                .addComponent(Oracel, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(sqlServer, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                .addComponent(SqlServer, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addGap(38, 38, 38)
-                .addComponent(postgreSQL, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                .addComponent(PostgreSQL, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                 .addGap(28, 28, 28)
-                .addComponent(mySql, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                .addComponent(MySql, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                 .addGap(53, 53, 53)
                 .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                 .addGap(95, 95, 95))
@@ -125,32 +125,32 @@ public class DataBaseType extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void postgreSQLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postgreSQLActionPerformed
+    private void PostgreSQLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostgreSQLActionPerformed
         // TODO add your handling code here:
         ConnectRegiste con = new ConnectRegiste();
         con.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_postgreSQLActionPerformed
+    }//GEN-LAST:event_PostgreSQLActionPerformed
 
-    private void postgreSQLMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postgreSQLMouseMoved
+    private void PostgreSQLMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PostgreSQLMouseMoved
         message.setText(ConmentMessage.POSTGRESQL);
-    }//GEN-LAST:event_postgreSQLMouseMoved
+    }//GEN-LAST:event_PostgreSQLMouseMoved
 
-    private void oracelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oracelMouseMoved
+    private void OracelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OracelMouseMoved
         message.setText(ConmentMessage.ORACLE);
-    }//GEN-LAST:event_oracelMouseMoved
+    }//GEN-LAST:event_OracelMouseMoved
 
-    private void sqlServerMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sqlServerMouseMoved
+    private void SqlServerMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SqlServerMouseMoved
         message.setText(ConmentMessage.SQLSERVER);
-    }//GEN-LAST:event_sqlServerMouseMoved
+    }//GEN-LAST:event_SqlServerMouseMoved
 
-    private void mySqlMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mySqlMouseMoved
+    private void MySqlMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MySqlMouseMoved
         message.setText(ConmentMessage.MYSQL);
-    }//GEN-LAST:event_mySqlMouseMoved
+    }//GEN-LAST:event_MySqlMouseMoved
 
-    private void oracelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oracelActionPerformed
+    private void OracelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OracelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_oracelActionPerformed
+    }//GEN-LAST:event_OracelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,12 +189,12 @@ public class DataBaseType extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton MySql;
+    private javax.swing.JButton Oracel;
+    private javax.swing.JButton PostgreSQL;
+    private javax.swing.JButton SqlServer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel message;
-    private javax.swing.JButton mySql;
-    private javax.swing.JButton oracel;
-    private javax.swing.JButton postgreSQL;
-    private javax.swing.JButton sqlServer;
     // End of variables declaration//GEN-END:variables
 }

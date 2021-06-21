@@ -7,7 +7,7 @@ package com.mycompany.view;
 
 import com.mycompany.model.DataBaseInfo;
 import com.mycompany.util.ConmentMessage;
-import com.mycompany.util.FileChoose;
+import com.mycompany.util.FileMethod;
 import com.mycompany.util.TemplateReader;
 import com.mycompany.view.utils.DialogMessage;
 import java.util.ArrayList;
@@ -23,13 +23,12 @@ import javax.swing.tree.TreePath;
  */
 public class Main extends javax.swing.JFrame {
 
-    FileChoose fileChooser = new FileChoose();
+    FileMethod fileChooser = new FileMethod();
 
     DialogMessage dialog = new DialogMessage();
 
     DefaultMutableTreeNode node;
 
-    ArrayList<String> selectedName = new ArrayList<>();
     //Icon 設定
     Icon leafIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Data-Grid-icon_16.png");
     Icon openIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\add_16.png");
@@ -41,19 +40,11 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         //ボタン非活性
-        output.setEnabled(false);
+        Output.setEnabled(false);
 
         this.setLocationRelativeTo(null);
 
         Jtree.setRowHeight(30);
-//        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) Jtree.getCellRenderer();
-//
-//        renderer.setLeafIcon(leafIcon);
-//
-//        renderer.setClosedIcon(closedIcon);
-//
-//        renderer.setOpenIcon(openIcon);
-
     }
 
     /**
@@ -73,22 +64,22 @@ public class Main extends javax.swing.JFrame {
         menuBar2 = new java.awt.MenuBar();
         menu3 = new java.awt.Menu();
         menu4 = new java.awt.Menu();
-        datebase = new javax.swing.JButton();
+        Datebase = new javax.swing.JButton();
         file = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        add = new javax.swing.JButton();
-        delete = new javax.swing.JButton();
-        allDelete = new javax.swing.JButton();
-        allAdd = new javax.swing.JButton();
-        output = new javax.swing.JButton();
-        seletedOutput = new javax.swing.JButton();
-        path = new javax.swing.JLabel();
+        Add = new javax.swing.JButton();
+        Delete = new javax.swing.JButton();
+        AllDelete = new javax.swing.JButton();
+        AllAdd = new javax.swing.JButton();
+        Output = new javax.swing.JButton();
+        SeletedOutput = new javax.swing.JButton();
+        Path = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        selectedList = new javax.swing.JList<>();
+        SelectedList = new javax.swing.JList<>();
         jScrollPane6 = new javax.swing.JScrollPane();
-        usedList = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
+        UsedList = new javax.swing.JList<>();
+        ExampleJLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Jtree = new javax.swing.JTree();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -96,10 +87,10 @@ public class Main extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        sqlRun = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        AddDB = new javax.swing.JMenu();
+        AddDataBase = new javax.swing.JMenuItem();
+        SqlRun = new javax.swing.JMenu();
+        doSql = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -119,11 +110,11 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        datebase.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\database_32.png")); // NOI18N
-        datebase.setToolTipText("データベースの追加と削除");
-        datebase.addActionListener(new java.awt.event.ActionListener() {
+        Datebase.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\database_32.png")); // NOI18N
+        Datebase.setToolTipText("データベースの追加と削除");
+        Datebase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                datebaseActionPerformed(evt);
+                DatebaseActionPerformed(evt);
             }
         });
 
@@ -137,58 +128,58 @@ public class Main extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        add.setText("追加＞＞");
-        add.addActionListener(new java.awt.event.ActionListener() {
+        Add.setText("追加＞＞");
+        Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addActionPerformed(evt);
+                AddActionPerformed(evt);
             }
         });
 
-        delete.setText("＜＜削除");
-        delete.addActionListener(new java.awt.event.ActionListener() {
+        Delete.setText("＜＜削除");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteActionPerformed(evt);
+                DeleteActionPerformed(evt);
             }
         });
 
-        allDelete.setText("＜＜全て削除");
-        allDelete.addActionListener(new java.awt.event.ActionListener() {
+        AllDelete.setText("＜＜全て削除");
+        AllDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allDeleteActionPerformed(evt);
+                AllDeleteActionPerformed(evt);
             }
         });
 
-        allAdd.setText("全て追加＞＞");
-        allAdd.addActionListener(new java.awt.event.ActionListener() {
+        AllAdd.setText("全て追加＞＞");
+        AllAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                allAddActionPerformed(evt);
+                AllAddActionPerformed(evt);
             }
         });
 
-        output.setText("出力");
-        output.addActionListener(new java.awt.event.ActionListener() {
+        Output.setText("出力");
+        Output.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                outputActionPerformed(evt);
+                OutputActionPerformed(evt);
             }
         });
 
-        seletedOutput.setText("出力場所を選択");
-        seletedOutput.addActionListener(new java.awt.event.ActionListener() {
+        SeletedOutput.setText("出力場所を選択");
+        SeletedOutput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seletedOutputActionPerformed(evt);
+                SeletedOutputActionPerformed(evt);
             }
         });
 
-        path.setBackground(new java.awt.Color(255, 255, 255));
+        Path.setBackground(new java.awt.Color(255, 255, 255));
 
-        selectedList.setBorder(javax.swing.BorderFactory.createTitledBorder("選択した表"));
-        jScrollPane5.setViewportView(selectedList);
+        SelectedList.setBorder(javax.swing.BorderFactory.createTitledBorder("選択した表"));
+        jScrollPane5.setViewportView(SelectedList);
 
-        usedList.setBorder(javax.swing.BorderFactory.createTitledBorder("使用可能な表"));
-        jScrollPane6.setViewportView(usedList);
+        UsedList.setBorder(javax.swing.BorderFactory.createTitledBorder("使用可能な表"));
+        jScrollPane6.setViewportView(UsedList);
 
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setText("例：D:\\netbeansWorkspace\\toolProject\\model\\src\\main\\java\\com\\mycompany");
+        ExampleJLabel.setForeground(new java.awt.Color(255, 0, 51));
+        ExampleJLabel.setText("例：D:\\netbeansWorkspace\\toolProject\\model\\src\\main\\java\\com\\mycompany");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -198,23 +189,23 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(seletedOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SeletedOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(add, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(allDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(allAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                            .addComponent(Delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Add, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AllDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AllAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
                         .addGap(38, 38, 38)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(output, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Output, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(path, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ExampleJLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Path, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -224,22 +215,22 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Add, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(94, 94, 94)
-                        .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(96, 96, 96)
-                        .addComponent(allAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AllAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95)
-                        .addComponent(allDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(AllDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(seletedOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SeletedOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Output, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(ExampleJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(path, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addComponent(Path, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -248,11 +239,6 @@ public class Main extends javax.swing.JFrame {
         Jtree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JtreeMouseClicked(evt);
-            }
-        });
-        Jtree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
-                JtreeValueChanged(evt);
             }
         });
         jScrollPane1.setViewportView(Jtree);
@@ -303,29 +289,29 @@ public class Main extends javax.swing.JFrame {
         jMenu2.setText("編集");
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("データベース");
+        AddDB.setText("データベース");
 
-        jMenuItem5.setText("データベースの追加");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        AddDataBase.setText("データベースの追加");
+        AddDataBase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                AddDataBaseActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        AddDB.add(AddDataBase);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(AddDB);
 
-        sqlRun.setText("SQL");
+        SqlRun.setText("SQL");
 
-        jMenuItem6.setText("SQL実行");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        doSql.setText("SQL実行");
+        doSql.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                doSqlActionPerformed(evt);
             }
         });
-        sqlRun.add(jMenuItem6);
+        SqlRun.add(doSql);
 
-        jMenuBar1.add(sqlRun);
+        jMenuBar1.add(SqlRun);
 
         setJMenuBar(jMenuBar1);
 
@@ -337,7 +323,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(datebase, javax.swing.GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE)
+                        .addComponent(Datebase, javax.swing.GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE)
                         .addGap(59, 59, 59)
                         .addComponent(file, javax.swing.GroupLayout.PREFERRED_SIZE, 54, Short.MAX_VALUE)
                         .addGap(1206, 1206, 1206))
@@ -351,7 +337,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(datebase, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(Datebase, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                     .addComponent(file, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -374,7 +360,7 @@ public class Main extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void datebaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datebaseActionPerformed
+    private void DatebaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DatebaseActionPerformed
 
         AddOrDeleteDb add = new AddOrDeleteDb();
         DefaultListModel demoList = new DefaultListModel();
@@ -382,19 +368,19 @@ public class Main extends javax.swing.JFrame {
             DataBaseInfo.connect.getDatabaseAliasList().forEach((list) -> {
                 demoList.addElement(list);
             });
-            add.dataBaseList.setModel(demoList);
+            add.DataBaseList.setModel(demoList);
         }
 
         add.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_datebaseActionPerformed
+    }//GEN-LAST:event_DatebaseActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+    private void AddDataBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDataBaseActionPerformed
+
         AddOrDeleteDb add = new AddOrDeleteDb();
         add.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_AddDataBaseActionPerformed
 
     private void fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileActionPerformed
 
@@ -406,29 +392,34 @@ public class Main extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void seletedOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seletedOutputActionPerformed
+    private void SeletedOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeletedOutputActionPerformed
 
         String diretoryPath = fileChooser.getDirectory(this);
         if (diretoryPath.isEmpty()) {
             dialog.popDialog(ConmentMessage.CHOOSEPLEASE, false);
         } else {
-            path.setText(diretoryPath);
-            output.setEnabled(true);
+            Path.setText(diretoryPath);
+            Output.setEnabled(true);
         }
-    }//GEN-LAST:event_seletedOutputActionPerformed
+    }//GEN-LAST:event_SeletedOutputActionPerformed
 
-    private void outputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputActionPerformed
+    /**
+     * 出力
+     *
+     * @param evt
+     */
+    private void OutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutputActionPerformed
 
         String databaseName = DataBaseInfo.connect.getDatabaseName();
         String username = DataBaseInfo.connect.getUserName();
         String pwd = DataBaseInfo.connect.getPassword();
         boolean status = false;
         TemplateReader out = new TemplateReader();
-        if (selectedList.getModel().getSize() != 0) {
+        if (SelectedList.getModel().getSize() != 0) {
             //出力
-            String outPath = path.getText() + "\\";
-            for (String tname : selectedName) {
-                boolean flg = out.getColumnAndType(tname, outPath, databaseName, username, pwd);
+            String outPath = Path.getText() + "\\";
+            for (int i = 0; i < SelectedList.getModel().getSize(); i++) {
+                boolean flg = out.getColumnAndType(SelectedList.getModel().getElementAt(i), outPath, databaseName, username, pwd);
                 status = flg;
             }
             if (status == true) {
@@ -440,23 +431,25 @@ public class Main extends javax.swing.JFrame {
             dialog.popDialog(ConmentMessage.NOSELECTEDTABLE, false);
         }
 
-    }//GEN-LAST:event_outputActionPerformed
+    }//GEN-LAST:event_OutputActionPerformed
 
     /**
      * 削除
      *
      * @param evt
      */
-    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-
-        if (selectedList.getModel().getSize() != 0) {
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        DefaultListModel usedModel = (DefaultListModel) UsedList.getModel();
+        if (SelectedList.getModel().getSize() != 0) {
             //選択されたテーブル名
-            String deletedName = selectedList.getSelectedValue();
+            String deletedName = SelectedList.getSelectedValue();
             if (deletedName != null) {
 
-                DefaultListModel listModel = (DefaultListModel) selectedList.getModel();
+                DefaultListModel listModel = (DefaultListModel) SelectedList.getModel();
                 //選択されたテーブル名を取り除く
                 listModel.removeElement(deletedName);
+                //使用可能テーブルに戻る
+                usedModel.addElement(deletedName);
             } else {
                 dialog.popDialog(ConmentMessage.CHOOSEDELETATABLE, false);
             }
@@ -465,26 +458,27 @@ public class Main extends javax.swing.JFrame {
             dialog.popDialog(ConmentMessage.NOUSEDTABLE, false);
         }
 
-    }//GEN-LAST:event_deleteActionPerformed
+    }//GEN-LAST:event_DeleteActionPerformed
 
     /**
      * 追加
      *
      * @param evt
      */
-    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+    DefaultListModel demo = new DefaultListModel();
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
 
-        if (usedList.getModel().getSize() != 0) {
+        DefaultListModel usedModel = (DefaultListModel) UsedList.getModel();
+        if (usedModel.getSize() != 0) {
             //選択されたテーブル名
-            String selected = usedList.getSelectedValue();
+
+            String selected = UsedList.getSelectedValue();
             if (selected != null) {
-                selectedName.add(selected);
+                demo.addElement(selected);
+
                 //選択されたテーブル名を追加
-                DefaultListModel demoList = new DefaultListModel();
-                selectedName.forEach((tname) -> {
-                    demoList.addElement(tname);
-                });
-                selectedList.setModel(demoList);
+                SelectedList.setModel(demo);
+                usedModel.removeElement(selected);
             } else {
                 dialog.popDialog(ConmentMessage.CHOOSEADDTABLE, false);
             }
@@ -493,54 +487,61 @@ public class Main extends javax.swing.JFrame {
             dialog.popDialog(ConmentMessage.NOUSEDTABLE, false);
         }
 
-    }//GEN-LAST:event_addActionPerformed
+        UsedList.setSelectedIndex(0);
+    }//GEN-LAST:event_AddActionPerformed
 
     /**
      * すべて削除
      *
      * @param evt
      */
-    private void allDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allDeleteActionPerformed
-
-        if (selectedList.getModel().getSize() != 0) {
-            DefaultListModel listModel = (DefaultListModel) selectedList.getModel();
+    private void AllDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllDeleteActionPerformed
+        DefaultListModel usedModel = (DefaultListModel) UsedList.getModel();
+        if (SelectedList.getModel().getSize() != 0) {
+            DefaultListModel listModel = (DefaultListModel) SelectedList.getModel();
+            //使用可能表に移動
+            for (int i = 0; i < SelectedList.getModel().getSize(); i++) {
+                Object item = SelectedList.getModel().getElementAt(i);
+                usedModel.addElement(item);
+            }
             //すべて取り除く
-            selectedName.clear();
             listModel.removeAllElements();
+
         } else {
             dialog.popDialog(ConmentMessage.NODELETETABLE, false);
         }
 
-    }//GEN-LAST:event_allDeleteActionPerformed
+    }//GEN-LAST:event_AllDeleteActionPerformed
 
     /**
      * すべて追加
      *
      * @param evt
      */
-    private void allAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allAddActionPerformed
-
-        if (usedList.getModel().getSize() != 0) {
+    private void AllAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllAddActionPerformed
+        ArrayList<String> selectedName = new ArrayList<>();
+        DefaultListModel usedModel = (DefaultListModel) UsedList.getModel();
+        if (usedModel.getSize() != 0) {
             DefaultListModel demoList = new DefaultListModel();
 
-            for (int i = 0; i < usedList.getModel().getSize(); i++) {
-                demoList.addElement(usedList.getModel().getElementAt(i));
-                selectedName.add(usedList.getModel().getElementAt(i));
+            for (int i = 0; i < UsedList.getModel().getSize(); i++) {
+                demoList.addElement(UsedList.getModel().getElementAt(i));
+                selectedName.add(UsedList.getModel().getElementAt(i));
 
             }
-
-            selectedList.setModel(demoList);
+            usedModel.removeAllElements();
+            SelectedList.setModel(demoList);
         } else {
             dialog.popDialog(ConmentMessage.NOUSEDTABLE, false);
         }
 
-    }//GEN-LAST:event_allAddActionPerformed
+    }//GEN-LAST:event_AllAddActionPerformed
 
-    private void JtreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_JtreeValueChanged
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_JtreeValueChanged
-
+    /**
+     * Jtree node click
+     *
+     * @param evt
+     */
     private void JtreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JtreeMouseClicked
         // TODO add your handling code here:
 
@@ -553,9 +554,6 @@ public class Main extends javax.swing.JFrame {
                 String pwd = DataBaseInfo.connect.getPassword();
                 if (DataBaseInfo.connect.status == null) {
                     dialog.popLocalDBLogin(DataBaseInfo.connect.getDatabaseName(), pwd);
-
-                } else {
-
                 }
 
             } else if (userObject.equals("public")) {
@@ -567,11 +565,11 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_JtreeMouseClicked
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void doSqlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doSqlActionPerformed
         // TODO add your handling code here:
         SqlRun sql = new SqlRun();
         sql.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_doSqlActionPerformed
 
     /**
      * @param args the command line arguments
@@ -617,24 +615,30 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add;
+    private javax.swing.JMenu AddDB;
+    private javax.swing.JMenuItem AddDataBase;
+    private javax.swing.JButton AllAdd;
+    private javax.swing.JButton AllDelete;
+    private javax.swing.JButton Datebase;
+    private javax.swing.JButton Delete;
+    private javax.swing.JLabel ExampleJLabel;
     public static javax.swing.JTree Jtree;
-    private javax.swing.JButton add;
-    private javax.swing.JButton allAdd;
-    private javax.swing.JButton allDelete;
-    private javax.swing.JButton datebase;
-    private javax.swing.JButton delete;
+    private javax.swing.JButton Output;
+    public javax.swing.JLabel Path;
+    private javax.swing.JList<String> SelectedList;
+    private javax.swing.JButton SeletedOutput;
+    private javax.swing.JMenu SqlRun;
+    public static javax.swing.JList<String> UsedList;
+    private javax.swing.JMenuItem doSql;
     private javax.swing.JButton file;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -646,12 +650,6 @@ public class Main extends javax.swing.JFrame {
     private java.awt.Menu menu4;
     private java.awt.MenuBar menuBar1;
     private java.awt.MenuBar menuBar2;
-    private javax.swing.JButton output;
-    public javax.swing.JLabel path;
-    private javax.swing.JList<String> selectedList;
-    private javax.swing.JButton seletedOutput;
-    private javax.swing.JMenu sqlRun;
-    public static javax.swing.JList<String> usedList;
     // End of variables declaration//GEN-END:variables
 
 }

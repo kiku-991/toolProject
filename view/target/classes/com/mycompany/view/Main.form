@@ -76,32 +76,32 @@
             <Property name="text" type="java.lang.String" value="&#x7de8;&#x96c6;"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="AddDB">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x30c7;&#x30fc;&#x30bf;&#x30d9;&#x30fc;&#x30b9;"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="AddDataBase">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x30c7;&#x30fc;&#x30bf;&#x30d9;&#x30fc;&#x30b9;&#x306e;&#x8ffd;&#x52a0;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddDataBaseActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="sqlRun">
+        <Menu class="javax.swing.JMenu" name="SqlRun">
           <Properties>
             <Property name="text" type="java.lang.String" value="SQL"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+            <MenuItem class="javax.swing.JMenuItem" name="doSql">
               <Properties>
                 <Property name="text" type="java.lang.String" value="SQL&#x5b9f;&#x884c;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doSqlActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -136,7 +136,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="datebase" pref="52" max="32767" attributes="0"/>
+                      <Component id="Datebase" pref="52" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Component id="file" pref="54" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="1206" max="-2" attributes="0"/>
@@ -155,7 +155,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="datebase" pref="52" max="32767" attributes="0"/>
+                  <Component id="Datebase" pref="52" max="32767" attributes="0"/>
                   <Component id="file" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -166,7 +166,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="datebase">
+    <Component class="javax.swing.JButton" name="Datebase">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="2" name="D:\netbeansWorkspace\toolProject\view\src\main\java\icon\database_32.png"/>
@@ -174,7 +174,7 @@
         <Property name="toolTipText" type="java.lang.String" value="&#x30c7;&#x30fc;&#x30bf;&#x30d9;&#x30fc;&#x30b9;&#x306e;&#x8ffd;&#x52a0;&#x3068;&#x524a;&#x9664;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="datebaseActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DatebaseActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="file">
@@ -230,27 +230,27 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="seletedOutput" max="32767" attributes="0"/>
+                                  <Component id="SeletedOutput" max="32767" attributes="0"/>
                                   <Component id="jScrollPane6" alignment="0" pref="337" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="delete" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="add" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="allDelete" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="allAdd" alignment="1" pref="187" max="32767" attributes="0"/>
+                                  <Component id="Delete" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="Add" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="AllDelete" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="AllAdd" alignment="1" pref="187" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="output" max="32767" attributes="0"/>
+                                  <Component id="Output" max="32767" attributes="0"/>
                                   <Component id="jScrollPane5" pref="343" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="path" max="32767" attributes="0"/>
+                                  <Component id="ExampleJLabel" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="Path" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -265,80 +265,80 @@
                           <Component id="jScrollPane5" min="-2" pref="683" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                              <Component id="add" min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="Add" min="-2" pref="44" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                              <Component id="delete" min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="Delete" min="-2" pref="44" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                              <Component id="allAdd" min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="AllAdd" min="-2" pref="44" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-                              <Component id="allDelete" min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="AllDelete" min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane6" min="-2" pref="683" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="seletedOutput" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="output" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="SeletedOutput" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="Output" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" pref="37" max="32767" attributes="0"/>
+                      <Component id="ExampleJLabel" pref="37" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="path" pref="42" max="32767" attributes="0"/>
+                      <Component id="Path" pref="42" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="add">
+            <Component class="javax.swing.JButton" name="Add">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x8ffd;&#x52a0;&#xff1e;&#xff1e;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="delete">
+            <Component class="javax.swing.JButton" name="Delete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#xff1c;&#xff1c;&#x524a;&#x9664;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="allDelete">
+            <Component class="javax.swing.JButton" name="AllDelete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#xff1c;&#xff1c;&#x5168;&#x3066;&#x524a;&#x9664;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allDeleteActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AllDeleteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="allAdd">
+            <Component class="javax.swing.JButton" name="AllAdd">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x5168;&#x3066;&#x8ffd;&#x52a0;&#xff1e;&#xff1e;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="allAddActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AllAddActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="output">
+            <Component class="javax.swing.JButton" name="Output">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x51fa;&#x529b;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="outputActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="OutputActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="seletedOutput">
+            <Component class="javax.swing.JButton" name="SeletedOutput">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x51fa;&#x529b;&#x5834;&#x6240;&#x3092;&#x9078;&#x629e;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seletedOutputActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeletedOutputActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="path">
+            <Component class="javax.swing.JLabel" name="Path">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -355,7 +355,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JList" name="selectedList">
+                <Component class="javax.swing.JList" name="SelectedList">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -379,7 +379,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JList" name="usedList">
+                <Component class="javax.swing.JList" name="UsedList">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -397,7 +397,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="ExampleJLabel">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="0" red="ff" type="rgb"/>
@@ -422,7 +422,6 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JtreeMouseClicked"/>
-                <EventHandler event="valueChanged" listener="javax.swing.event.TreeSelectionListener" parameters="javax.swing.event.TreeSelectionEvent" handler="JtreeValueChanged"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
