@@ -6,9 +6,12 @@
 package com.mycompany.util;
 
 import com.mycompany.model.TableInfo;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -77,9 +80,11 @@ public class TemplateReader {
                 list.add(tableInfo);
             }
 
-            String packageName = "com.mycompany.eneity";
+            String pcName = getPackageName(path);
 
-            String template = Template.readSource(packageName, tableName, className, list);
+            String packageName = pcName + "eneity";
+
+            String template = EntityTemplate.readSource(packageName, tableName, className, list);
             try {
                 //生成java文件
                 mkDirectory(path + "\\entity");
@@ -172,18 +177,19 @@ public class TemplateReader {
         return pro;
     }
 
-//    /**
-//     * 生成包名
-//     */
-//    private String getPackageName(String path) {
-//        int index = path.indexOf("java\\");
-//        String newPackage = "";
-//        if (index > 0) {
-//            String substring = path.substring(index + 5);
-//            newPackage = substring.replace("\\", ".");
-//        }
-//        return newPackage;
-//    }
+    /**
+     * 生成包名
+     */
+    private String getPackageName(String path) {
+        int index = path.indexOf("java\\");
+        String newPackage = "";
+        if (index > 0) {
+            String substring = path.substring(index + 5);
+            newPackage = substring.replace("\\", ".");
+        }
+        return newPackage;
+    }
+
     /**
      * 生成文件
      *
@@ -197,10 +203,15 @@ public class TemplateReader {
         if (!file.exists()) {
             file.createNewFile();
         }
-        FileWriter writer = new FileWriter(file);
-        writer.write(info);
-        writer.flush();
-        writer.close();
+
+//        try (FileWriter writer = new FileWriter(file)) {
+//            writer.write(info);
+//
+//            writer.flush();
+//        }
+        PrintWriter p_writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8")));
+        p_writer.println(info);
+        p_writer.close();
     }
 
     /**

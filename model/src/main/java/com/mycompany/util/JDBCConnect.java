@@ -7,9 +7,11 @@ package com.mycompany.util;
 
 import com.mycompany.model.DataBaseInfo;
 import com.mycompany.model.TableInfo;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -90,6 +92,40 @@ public class JDBCConnect {
     }
 
     /**
+     *
+     * @param databaseName
+     * @param userName
+     * @param pwd
+     * @param sql
+     * @return
+     */
+    public List<List<String>> GetResult(String databaseName, String userName, String pwd, String sql) {
+
+        List<List<String>> resultList = new ArrayList<>();
+
+        try {
+            //String sql = "select * from " + tableName;
+            rset = getConn(databaseName, userName, pwd).executeQuery(sql);
+            int count = rset.getMetaData().getColumnCount();
+
+            while (rset.next()) {
+                List<String> newList = new ArrayList<>();
+                for (int i = 1; i <= count; i++) {
+                    String value = rset.getString(i);
+                    System.out.println("value :" + value + " ");
+
+                    newList.add(value);
+                }
+                resultList.add(newList);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return resultList;
+    }
+
+    /**
      * 実行SQL
      *
      * @param databaseName
@@ -98,38 +134,36 @@ public class JDBCConnect {
      * @param tableName
      * @return
      */
-    public List<TableInfo> SqlRun(String databaseName, String userName, String pwd, String tableName) {
+    public List<String> getColumnName(String databaseName, String userName, String pwd, String tableName) {
 
+        List<String> list = new ArrayList<>();
         try {
             String coulmnSql = "SELECT\n"
                     + "    a.attname as name\n"
-                    + "    , format_type(a.atttypid, a.atttypmod) as type\n"
+                    + "  \n"
                     + "FROM\n"
                     + "    pg_class as c\n"
                     + "    , pg_attribute as a \n"
                     + "where\n"
-                    + "    c.relname = " + "'" + tableName + "'" + "\n"
+                    + "    c.relname = '" + tableName + "' \n"
                     + "    and a.attrelid = c.oid \n"
                     + "    and a.attnum > 0";
             rset = getConn(databaseName, userName, pwd).executeQuery(coulmnSql);
             //SELECT結果の受け取り
 
             while (rset.next()) {
-                TableInfo tableInfo = new TableInfo();
+
                 //获取数据类型
                 String name = rset.getString(1);
-                tableInfo.setColumnName(name);
-                //获取字段名称
-                Object type = rset.getString(2);
-                String dtype = TemplateReader.classCast(type);
-                tableInfo.setDataType(dtype);
-                tableInfoList.add(tableInfo);
+
+                list.add(name);
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDBCConnect.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
-        return tableInfoList;
+        return list;
 
     }
 
@@ -146,14 +180,19 @@ public class JDBCConnect {
         String driver = ConmentMessage.DRIVER;
         // String url = "jdbc:postgresql://" + sname + ":" + portNum + "/" + dbname;
         String jdbcUrl = ConmentMessage.JDBCURL + databaseName;
+
         try {
             Class.forName(driver);
             conn = (Connection) DriverManager.getConnection(jdbcUrl, username, pwd);
             stmt = conn.createStatement();
+
         } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDBCConnect.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDBCConnect.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         return stmt;
@@ -188,7 +227,8 @@ public class JDBCConnect {
                 tableList.add(col);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDBCConnect.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         return tableList;
@@ -196,36 +236,28 @@ public class JDBCConnect {
     }
 
     /**
-     * tableColumn数量を取得
      *
      * @param databaseName
      * @param userName
      * @param pwd
-     * @param tableName
+     * @param sql
      * @return
      */
-    public int getTableColumn(String databaseName, String userName, String pwd, String tableName) {
+    public int GetResultCount(String databaseName, String userName, String pwd, String sql) {
 
-        int count = 0;
+        int count = 1;
         try {
-            String sql = "select\n"
-                    + "    count(*) \n"
-                    + "from\n"
-                    + "    information_schema.COLUMNS \n"
-                    + "where\n"
-                    + "    table_name = '" + tableName + "'";
+            //String sql = "select * from " + tableName;
             rset = getConn(databaseName, userName, pwd).executeQuery(sql);
-            //SELECT結果の受け取り
-            while (rset.next()) {
-                count = rset.getInt("count");
-                System.out.println(count);
 
-            }
+            count = rset.getMetaData().getColumnCount();
+
         } catch (SQLException ex) {
+
             Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
         return count;
     }
-
 }

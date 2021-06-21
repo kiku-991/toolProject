@@ -5,7 +5,6 @@
  */
 package com.mycompany.model;
 
-import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +23,7 @@ public class TableInfo {
     public Object dataType;
     //コメント
     public String comment;
+    //値
+    public String value;
 
 }

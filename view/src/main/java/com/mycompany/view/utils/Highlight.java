@@ -5,10 +5,7 @@
  */
 package com.mycompany.view.utils;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.ComponentOrientation;
-import javax.swing.JPanel;
 import org.fife.ui.rtextarea.*;
 import org.fife.ui.rsyntaxtextarea.*;
 

@@ -29,6 +29,9 @@ public class DataBaseInfo {
 
     public List<String> databaseAliasList;
 
+    //状態
+    public Integer status;
+
     public Connection connection;
     public Statement statement;
     public ResultSet result;

@@ -8,6 +8,7 @@ package com.mycompany.util;
 import com.mycompany.model.TableInfo;
 import java.io.StringWriter;
 import java.util.List;
+import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
@@ -16,7 +17,7 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 /**
  *
  */
-public class Template {
+public class EntityTemplate {
 
     /**
      *
@@ -35,9 +36,13 @@ public class Template {
         ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
         ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
 
-        ve.init();
-        org.apache.velocity.Template t = ve.getTemplate("sample.vm");
+        ve.setProperty("input.encoding", "UTF-8");
 
+        ve.setProperty("output.encoding", "UTF-8");
+
+        ve.init();
+        Template t = ve.getTemplate("sample.vm");
+        t.setEncoding("UTF-8");
         VelocityContext context = new VelocityContext();
         context.put("packageName", packageName);
         context.put("dbname", tableName);

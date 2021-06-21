@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = ${dbname})
+@Table(name = "${dbname}")
 public class ${javaClazz} {
 
 #foreach($data in $list)

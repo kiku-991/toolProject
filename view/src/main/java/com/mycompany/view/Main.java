@@ -17,7 +17,6 @@ import javax.swing.ImageIcon;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
-import javax.swing.tree.TreeSelectionModel;
 
 /**
  *
@@ -32,8 +31,8 @@ public class Main extends javax.swing.JFrame {
 
     ArrayList<String> selectedName = new ArrayList<>();
     //Icon 設定
-    Icon leafIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\database-table-icon.png");
-    Icon openIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\database_32.png");
+    Icon leafIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Data-Grid-icon_16.png");
+    Icon openIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\add_16.png");
     Icon closedIcon = new ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Data-Grid-icon_16.png");
 
     /**
@@ -45,13 +44,15 @@ public class Main extends javax.swing.JFrame {
         output.setEnabled(false);
 
         this.setLocationRelativeTo(null);
-        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) Jtree.getCellRenderer();
 
-        renderer.setLeafIcon(leafIcon);
-
-        renderer.setClosedIcon(closedIcon);
-
-        renderer.setOpenIcon(openIcon);
+        Jtree.setRowHeight(30);
+//        DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) Jtree.getCellRenderer();
+//
+//        renderer.setLeafIcon(leafIcon);
+//
+//        renderer.setClosedIcon(closedIcon);
+//
+//        renderer.setOpenIcon(openIcon);
 
     }
 
@@ -87,6 +88,7 @@ public class Main extends javax.swing.JFrame {
         selectedList = new javax.swing.JList<>();
         jScrollPane6 = new javax.swing.JScrollPane();
         usedList = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Jtree = new javax.swing.JTree();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -185,16 +187,15 @@ public class Main extends javax.swing.JFrame {
         usedList.setBorder(javax.swing.BorderFactory.createTitledBorder("使用可能な表"));
         jScrollPane6.setViewportView(usedList);
 
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setText("例：D:\\netbeansWorkspace\\toolProject\\model\\src\\main\\java\\com\\mycompany");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(seletedOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -208,7 +209,12 @@ public class Main extends javax.swing.JFrame {
                         .addGap(38, 38, 38)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(output, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(path, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -230,9 +236,11 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(seletedOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(output, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(path, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(path, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("データベース");
@@ -257,17 +265,17 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                 .addGap(36, 36, 36)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jMenu1.setText("ファイル");
@@ -329,9 +337,10 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(datebase, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(datebase, javax.swing.GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE)
                         .addGap(59, 59, 59)
-                        .addComponent(file, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(file, javax.swing.GroupLayout.PREFERRED_SIZE, 54, Short.MAX_VALUE)
+                        .addGap(1206, 1206, 1206))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -341,12 +350,12 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(datebase, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                     .addComponent(file, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -542,10 +551,18 @@ public class Main extends javax.swing.JFrame {
             if (userObject.equals(DataBaseInfo.connect.getDatabaseName())) {
                 // String selectedDB = tableList.getSelectedValue();
                 String pwd = DataBaseInfo.connect.getPassword();
+                if (DataBaseInfo.connect.status == null) {
+                    dialog.popLocalDBLogin(DataBaseInfo.connect.getDatabaseName(), pwd);
 
-                dialog.popLocalDBLogin(DataBaseInfo.connect.getDatabaseName(), pwd);
+                } else {
 
-            }//Do what you want with selected element's user object
+                }
+
+            } else if (userObject.equals("public")) {
+
+                DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) Jtree.getCellRenderer();
+                renderer.setLeafIcon(leafIcon);
+            }
         }
 
     }//GEN-LAST:event_JtreeMouseClicked
@@ -607,6 +624,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton datebase;
     private javax.swing.JButton delete;
     private javax.swing.JButton file;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
