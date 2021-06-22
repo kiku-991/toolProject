@@ -11,7 +11,7 @@ import com.mycompany.util.FileMethod;
 import com.mycompany.util.JDBCConnect;
 import com.mycompany.view.utils.DialogMessage;
 import java.awt.Color;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -44,14 +44,14 @@ public class SqlRun extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        inputSql = new javax.swing.JTextArea();
+        InputSql = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        resultTable = new javax.swing.JTable();
-        runSql = new javax.swing.JButton();
-        output = new javax.swing.JButton();
+        ResultTable = new javax.swing.JTable();
+        RunSql = new javax.swing.JButton();
+        Output = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        fileChoose = new javax.swing.JButton();
+        FileChoose = new javax.swing.JButton();
         path = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -60,10 +60,10 @@ public class SqlRun extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("SQL輸入"));
 
-        inputSql.setColumns(20);
-        inputSql.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
-        inputSql.setRows(5);
-        jScrollPane4.setViewportView(inputSql);
+        InputSql.setColumns(20);
+        InputSql.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
+        InputSql.setRows(5);
+        jScrollPane4.setViewportView(InputSql);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,7 +76,7 @@ public class SqlRun extends javax.swing.JFrame {
             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
         );
 
-        resultTable.setModel(new javax.swing.table.DefaultTableModel(
+        ResultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -84,7 +84,7 @@ public class SqlRun extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane3.setViewportView(resultTable);
+        jScrollPane3.setViewportView(ResultTable);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -97,17 +97,17 @@ public class SqlRun extends javax.swing.JFrame {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
         );
 
-        runSql.setText("SQL実行");
-        runSql.addActionListener(new java.awt.event.ActionListener() {
+        RunSql.setText("SQL実行");
+        RunSql.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                runSqlActionPerformed(evt);
+                RunSqlActionPerformed(evt);
             }
         });
 
-        output.setText("出力");
-        output.addActionListener(new java.awt.event.ActionListener() {
+        Output.setText("出力");
+        Output.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                outputActionPerformed(evt);
+                OutputActionPerformed(evt);
             }
         });
 
@@ -115,10 +115,10 @@ public class SqlRun extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
         jLabel1.setText("例:select * from tableName");
 
-        fileChoose.setText("ファイル選択");
-        fileChoose.addActionListener(new java.awt.event.ActionListener() {
+        FileChoose.setText("ファイル選択");
+        FileChoose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileChooseActionPerformed(evt);
+                FileChooseActionPerformed(evt);
             }
         });
 
@@ -142,13 +142,13 @@ public class SqlRun extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(runSql, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                        .addComponent(RunSql, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                         .addGap(305, 305, 305)
-                        .addComponent(fileChoose)
+                        .addComponent(FileChoose)
                         .addGap(34, 34, 34)
                         .addComponent(path, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                         .addGap(182, 182, 182)
-                        .addComponent(output, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
+                        .addComponent(Output, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -157,11 +157,11 @@ public class SqlRun extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fileChoose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FileChoose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(path, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(output, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Output, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(runSql, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(RunSql, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(29, 29, 29)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,55 +178,60 @@ public class SqlRun extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void runSqlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runSqlActionPerformed
+    private void RunSqlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunSqlActionPerformed
+
+        DefaultTableModel resu = (DefaultTableModel) ResultTable.getModel();
 
         String dbName = DataBaseInfo.connect.getDatabaseName();
         String uName = DataBaseInfo.connect.getUserName();
         String pwd = DataBaseInfo.connect.getPassword();
-        String sql = inputSql.getText();
+        String sql = InputSql.getText();
 
         String tableName = sql.replace("select * from", "").trim();
         System.out.println(tableName);
+        List<String> colunmName = new ArrayList<String>();
 
         //列名
-        List<String> colunmName = JDBCConnect.connect.getColumnName(dbName, uName, pwd, tableName);
-
-        DefaultTableModel resu = (DefaultTableModel) resultTable.getModel();
-        //列名設定
+        colunmName = JDBCConnect.connect.getColumnName(dbName, uName, pwd, tableName);
+        //List to Array
         String[] array = colunmName.toArray(new String[colunmName.size()]);
+        //列名設定
         resu.setColumnIdentifiers(array);
+        //  行数初期化
+        resu.setRowCount(0);
         //列値
         List< List<String>> columnvalue = JDBCConnect.connect.GetResult(dbName, uName, pwd, sql);
         //列値設定
-        for (List<String> s : columnvalue) {
-            String[] toArray = s.toArray(new String[s.size()]);
+        columnvalue.stream().map((s) -> s.toArray(new String[s.size()])).forEachOrdered((toArray) -> {
             resu.addRow(toArray);
-            System.out.println(Arrays.toString(toArray));
-        }
+        });
 
-        resultTable.setRowHeight(30);
+        System.out.println("rowCount:" + resu.getRowCount());
 
-        JTableHeader header = resultTable.getTableHeader();
+        //  row count = 0
+        ResultTable.setRowHeight(30);
+
+        JTableHeader header = ResultTable.getTableHeader();
         header.setBackground(Color.red);
 
-    }//GEN-LAST:event_runSqlActionPerformed
+    }//GEN-LAST:event_RunSqlActionPerformed
 
-    private void outputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outputActionPerformed
+    private void OutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutputActionPerformed
 
-        boolean flg = fileMethod.toCsv(path.getText(), resultTable);
+        boolean flg = fileMethod.toCsv(path.getText(), ResultTable);
         if (flg == true) {
             dialog.popDialog(ConmentMessage.OUTPUTOK, flg);
         } else {
             dialog.popDialog(ConmentMessage.OUTPUTFAIL, flg);
         }
-    }//GEN-LAST:event_outputActionPerformed
+    }//GEN-LAST:event_OutputActionPerformed
 
-    private void fileChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooseActionPerformed
+    private void FileChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileChooseActionPerformed
 
         String p = fileMethod.getDirectory(this);
         path.setText(p);
 
-    }//GEN-LAST:event_fileChooseActionPerformed
+    }//GEN-LAST:event_FileChooseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,16 +270,16 @@ public class SqlRun extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton fileChoose;
-    private javax.swing.JTextArea inputSql;
+    private javax.swing.JButton FileChoose;
+    private javax.swing.JTextArea InputSql;
+    private javax.swing.JButton Output;
+    private javax.swing.JTable ResultTable;
+    private javax.swing.JButton RunSql;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JButton output;
     private javax.swing.JLabel path;
-    private javax.swing.JTable resultTable;
-    private javax.swing.JButton runSql;
     // End of variables declaration//GEN-END:variables
 }

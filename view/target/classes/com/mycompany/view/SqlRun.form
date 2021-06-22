@@ -41,9 +41,9 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="runSql" pref="188" max="32767" attributes="0"/>
+                      <Component id="RunSql" pref="188" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="305" max="-2" attributes="0"/>
-                      <Component id="fileChoose" min="-2" max="-2" attributes="0"/>
+                      <Component id="FileChoose" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="path" pref="546" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
@@ -60,11 +60,11 @@
               <Component id="jLabel1" pref="35" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="fileChoose" max="32767" attributes="0"/>
+                  <Component id="FileChoose" max="32767" attributes="0"/>
                   <Component id="path" max="32767" attributes="0"/>
                   <Component id="output" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="runSql" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="RunSql" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -162,12 +162,12 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="runSql">
+    <Component class="javax.swing.JButton" name="RunSql">
       <Properties>
         <Property name="text" type="java.lang.String" value="SQL&#x5b9f;&#x884c;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="runSqlActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RunSqlActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="output">
@@ -189,12 +189,12 @@
         <Property name="text" type="java.lang.String" value="&#x4f8b;:select * from tableName"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="fileChoose">
+    <Component class="javax.swing.JButton" name="FileChoose">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x30d5;&#x30a1;&#x30a4;&#x30eb;&#x9078;&#x629e;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileChooseActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FileChooseActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="path">

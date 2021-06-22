@@ -109,6 +109,7 @@ public class Main extends javax.swing.JFrame {
         menuBar2.add(menu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("KIKU SQL");
 
         Datebase.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\database_32.png")); // NOI18N
         Datebase.setToolTipText("データベースの追加と削除");

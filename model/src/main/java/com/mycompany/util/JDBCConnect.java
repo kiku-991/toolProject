@@ -33,7 +33,6 @@ public class JDBCConnect {
 
     Connection conn;
     Statement stmt;
-    ResultSet rset;
 
     List<String> dataNameList = new ArrayList<>();
     List<TableInfo> tableInfoList = new ArrayList<>();
@@ -102,6 +101,7 @@ public class JDBCConnect {
     public List<List<String>> GetResult(String databaseName, String userName, String pwd, String sql) {
 
         List<List<String>> resultList = new ArrayList<>();
+        ResultSet rset;
 
         try {
             //String sql = "select * from " + tableName;
@@ -136,6 +136,7 @@ public class JDBCConnect {
      */
     public List<String> getColumnName(String databaseName, String userName, String pwd, String tableName) {
 
+        ResultSet rset;
         List<String> list = new ArrayList<>();
         try {
             String coulmnSql = "SELECT\n"
@@ -209,6 +210,7 @@ public class JDBCConnect {
      */
     public ArrayList<String> getAllTableList(String databaseName, String username, String pwd) {
 
+        ResultSet rset;
         ArrayList<String> tableList = new ArrayList<>();
         //すべてのテーブルを取得sql
         String sql = "select\r\n"
@@ -245,6 +247,7 @@ public class JDBCConnect {
      */
     public int GetResultCount(String databaseName, String userName, String pwd, String sql) {
 
+        ResultSet rset;
         int count = 1;
         try {
             //String sql = "select * from " + tableName;

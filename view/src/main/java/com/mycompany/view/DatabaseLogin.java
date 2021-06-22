@@ -41,8 +41,8 @@ public class DatabaseLogin extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        connect = new javax.swing.JButton();
-        cancel = new javax.swing.JButton();
+        Connect = new javax.swing.JButton();
+        Cancel = new javax.swing.JButton();
         pwd = new javax.swing.JPasswordField();
         uname = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
@@ -58,19 +58,19 @@ public class DatabaseLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("MS UI Gothic", 0, 24)); // NOI18N
         jLabel2.setText("ユーザ名：");
 
-        connect.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Knob-Valid-Green-icon.png")); // NOI18N
-        connect.setText("接続");
-        connect.addActionListener(new java.awt.event.ActionListener() {
+        Connect.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\Knob-Valid-Green-icon.png")); // NOI18N
+        Connect.setText("接続");
+        Connect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                connectActionPerformed(evt);
+                ConnectActionPerformed(evt);
             }
         });
 
-        cancel.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\close_32.png")); // NOI18N
-        cancel.setText("キャンセル");
-        cancel.addActionListener(new java.awt.event.ActionListener() {
+        Cancel.setIcon(new javax.swing.ImageIcon("D:\\netbeansWorkspace\\toolProject\\view\\src\\main\\java\\icon\\close_32.png")); // NOI18N
+        Cancel.setText("キャンセル");
+        Cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelActionPerformed(evt);
+                CancelActionPerformed(evt);
             }
         });
 
@@ -103,9 +103,9 @@ public class DatabaseLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(446, 446, 446)
-                        .addComponent(connect, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                        .addComponent(Connect, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancel, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                        .addComponent(Cancel, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                         .addGap(1, 1, 1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
@@ -132,22 +132,14 @@ public class DatabaseLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jCheckBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(uname, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(pwd, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(uname, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(pwd, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(35, 35, 35)
@@ -156,15 +148,15 @@ public class DatabaseLogin extends javax.swing.JFrame {
                     .addComponent(jComboBox1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE))
+                    .addComponent(Connect, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
+    private void ConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnectActionPerformed
         //getcon
 
         List<String> tableName = new ArrayList<>();
@@ -203,7 +195,7 @@ public class DatabaseLogin extends javax.swing.JFrame {
 
         this.dispose();
 
-    }//GEN-LAST:event_connectActionPerformed
+    }//GEN-LAST:event_ConnectActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
@@ -213,11 +205,11 @@ public class DatabaseLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pwdActionPerformed
 
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
 
         this.dispose();
 
-    }//GEN-LAST:event_cancelActionPerformed
+    }//GEN-LAST:event_CancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,8 +248,8 @@ public class DatabaseLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancel;
-    private javax.swing.JButton connect;
+    private javax.swing.JButton Cancel;
+    private javax.swing.JButton Connect;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
