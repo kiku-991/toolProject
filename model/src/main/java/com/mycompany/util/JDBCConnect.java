@@ -7,7 +7,6 @@ package com.mycompany.util;
 
 import com.mycompany.model.DataBaseInfo;
 import com.mycompany.model.TableInfo;
-import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,6 +32,7 @@ public class JDBCConnect {
 
     Connection conn;
     Statement stmt;
+    ResultSet rset;
 
     List<String> dataNameList = new ArrayList<>();
     List<TableInfo> tableInfoList = new ArrayList<>();
@@ -88,84 +88,6 @@ public class JDBCConnect {
             stmt.close();
             conn.close();
         }
-    }
-
-    /**
-     *
-     * @param databaseName
-     * @param userName
-     * @param pwd
-     * @param sql
-     * @return
-     */
-    public List<List<String>> GetResult(String databaseName, String userName, String pwd, String sql) {
-
-        List<List<String>> resultList = new ArrayList<>();
-        ResultSet rset;
-
-        try {
-            //String sql = "select * from " + tableName;
-            rset = getConn(databaseName, userName, pwd).executeQuery(sql);
-            int count = rset.getMetaData().getColumnCount();
-
-            while (rset.next()) {
-                List<String> newList = new ArrayList<>();
-                for (int i = 1; i <= count; i++) {
-                    String value = rset.getString(i);
-                    System.out.println("value :" + value + " ");
-
-                    newList.add(value);
-                }
-                resultList.add(newList);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return resultList;
-    }
-
-    /**
-     * 実行SQL
-     *
-     * @param databaseName
-     * @param userName
-     * @param pwd
-     * @param tableName
-     * @return
-     */
-    public List<String> getColumnName(String databaseName, String userName, String pwd, String tableName) {
-
-        ResultSet rset;
-        List<String> list = new ArrayList<>();
-        try {
-            String coulmnSql = "SELECT\n"
-                    + "    a.attname as name\n"
-                    + "  \n"
-                    + "FROM\n"
-                    + "    pg_class as c\n"
-                    + "    , pg_attribute as a \n"
-                    + "where\n"
-                    + "    c.relname = '" + tableName + "' \n"
-                    + "    and a.attrelid = c.oid \n"
-                    + "    and a.attnum > 0";
-            rset = getConn(databaseName, userName, pwd).executeQuery(coulmnSql);
-            //SELECT結果の受け取り
-
-            while (rset.next()) {
-
-                //获取数据类型
-                String name = rset.getString(1);
-
-                list.add(name);
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnect.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-        return list;
-
     }
 
     /**
@@ -238,6 +160,39 @@ public class JDBCConnect {
     }
 
     /**
+     * データベースの値を取得
+     *
+     * @param databaseName
+     * @param userName
+     * @param pwd
+     * @param sql
+     */
+    public List<List<Object>> getResultValue(String databaseName, String userName, String pwd, String sql) {
+
+        List<List<Object>> resultList = new ArrayList<>();
+
+        try {
+            rset = getConn(databaseName, userName, pwd).executeQuery(sql);
+            ResultSetMetaData rsmd = rset.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+
+            while (rset.next()) {
+                List<Object> newList = new ArrayList<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    String value = rset.getString(i);
+                    newList.add(value);
+
+                }
+                resultList.add(newList);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultList;
+    }
+
+    /**
+     * カラム名を取得
      *
      * @param databaseName
      * @param userName
@@ -245,22 +200,30 @@ public class JDBCConnect {
      * @param sql
      * @return
      */
-    public int GetResultCount(String databaseName, String userName, String pwd, String sql) {
+    public List<String> ColumnName(String databaseName, String userName, String pwd, String sql) {
 
-        ResultSet rset;
-        int count = 1;
+        List<String> columnNames = new ArrayList<String>();
         try {
-            //String sql = "select * from " + tableName;
+
             rset = getConn(databaseName, userName, pwd).executeQuery(sql);
 
-            count = rset.getMetaData().getColumnCount();
+            // Execute SQL query
+            stmt = conn.createStatement();
+            if (rset != null) {
+                ResultSetMetaData columns = rset.getMetaData();
+                int i = 0;
+                while (i < columns.getColumnCount()) {
+                    i++;
+                    String conName = columns.getColumnName(i);
+                    columnNames.add(conName);
+                }
 
-        } catch (SQLException ex) {
-
-            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, ex);
-
+            }
+        } catch (Exception e) {
+            Logger.getLogger(JDBCConnect.class.getName()).log(Level.SEVERE, null, e);
         }
 
-        return count;
+        return columnNames;
+
     }
 }

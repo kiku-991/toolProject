@@ -36,5 +36,6 @@ public class ConmentMessage {
     public static final String DATABASE = "データベース";
     public static final String HOST = "localhost";
     public static final String PUBLIC = "public";
+    public static final String RIGHTSQL = "正しいSQLを入力してください";
 
 }

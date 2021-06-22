@@ -12,6 +12,7 @@ import com.mycompany.util.JDBCConnect;
 import com.mycompany.view.utils.DialogMessage;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -187,33 +188,35 @@ public class SqlRun extends javax.swing.JFrame {
         String pwd = DataBaseInfo.connect.getPassword();
         String sql = InputSql.getText();
 
-        String tableName = sql.replace("select * from", "").trim();
-        System.out.println(tableName);
-        List<String> colunmName = new ArrayList<String>();
+        List<String> colunmName = new ArrayList<>();
+//        //列名
+        colunmName = JDBCConnect.connect.ColumnName(dbName, uName, pwd, sql);
 
-        //列名
-        colunmName = JDBCConnect.connect.getColumnName(dbName, uName, pwd, tableName);
-        //List to Array
-        String[] array = colunmName.toArray(new String[colunmName.size()]);
-        //列名設定
-        resu.setColumnIdentifiers(array);
-        //  行数初期化
-        resu.setRowCount(0);
-        //列値
-        List< List<String>> columnvalue = JDBCConnect.connect.GetResult(dbName, uName, pwd, sql);
-        //列値設定
-        columnvalue.stream().map((s) -> s.toArray(new String[s.size()])).forEachOrdered((toArray) -> {
-            resu.addRow(toArray);
-        });
+        if (!colunmName.isEmpty()) {
+            //List to Array
+            String[] array = colunmName.toArray(new String[colunmName.size()]);
+            //列名設定
+            resu.setColumnIdentifiers(array);
+            //行数初期化
+            resu.setRowCount(0);
+            //列値
+            List<List<Object>> resultValue = JDBCConnect.connect.getResultValue(dbName, uName, pwd, sql);
+            //列値設定
+            for (List<Object> rv : resultValue) {
+                String[] toArray = rv.toArray(new String[rv.size()]);
+                resu.addRow(toArray);
+                System.out.println(Arrays.toString(toArray));
+            }
 
-        System.out.println("rowCount:" + resu.getRowCount());
+        } else {
 
-        //  row count = 0
+            dialog.popDialog(ConmentMessage.RIGHTSQL, false);
+        }
+
         ResultTable.setRowHeight(30);
 
         JTableHeader header = ResultTable.getTableHeader();
         header.setBackground(Color.red);
-
     }//GEN-LAST:event_RunSqlActionPerformed
 
     private void OutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutputActionPerformed
@@ -232,42 +235,6 @@ public class SqlRun extends javax.swing.JFrame {
         path.setText(p);
 
     }//GEN-LAST:event_FileChooseActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SqlRun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SqlRun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SqlRun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SqlRun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SqlRun().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton FileChoose;

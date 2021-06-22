@@ -24,6 +24,6 @@ public class TableInfo {
     //コメント
     public String comment;
     //値
-    public String value;
+    public Object value;
 
 }
