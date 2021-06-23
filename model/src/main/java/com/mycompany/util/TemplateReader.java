@@ -148,8 +148,8 @@ public class TemplateReader {
         }
         return type;
     }
-    //数据库字段名字转java属性名字
 
+    //数据库字段名字转java属性名字
     private String getPropertity(Object obj) {
         String pro = "";
         String colum = (String) obj;

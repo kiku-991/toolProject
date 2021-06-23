@@ -1,0 +1,8 @@
+com\mycompany\util\FileMethod.class
+com\mycompany\util\Node.class
+com\mycompany\util\TemplateReader.class
+com\mycompany\util\JDBCConnect.class
+com\mycompany\util\ConmentMessage.class
+com\mycompany\util\EntityTemplate.class
+com\mycompany\model\DataBaseInfo.class
+com\mycompany\model\TableInfo.class

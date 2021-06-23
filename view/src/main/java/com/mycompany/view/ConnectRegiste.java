@@ -281,19 +281,15 @@ public class ConnectRegiste extends javax.swing.JFrame {
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
 
         //データベース名設定
-        //  ConnectEntity.DATABASENAME = datebaseName.getText();
         String databaseName = DatebaseName.getText();
         //ユーザ名設定
-        //  ConnectEntity.USERNAME = userName.getText();
         String username = UserName.getText();
         //パスワード設定
-        //  ConnectEntity.PASSWORD = password.getText();
         String pwd = Password.getText();
 
         Statement st = JDBCConnect.connect.getConn(databaseName, username, pwd);
         AddOrDeleteDb db = new AddOrDeleteDb();
 
-        //  ArrayList<String> dbList = new ArrayList<>();
         DefaultListModel demoList = new DefaultListModel();
         if (st != null) {
             //接続成功場合
@@ -310,19 +306,6 @@ public class ConnectRegiste extends javax.swing.JFrame {
             dialog.popDialog(ConmentMessage.CONNECT_FAIL, false);
         }
 
-        // ArrayList<String> tableList = jb.getAllTableName();
-//        if (JDBCConnect.connect.getStmt() != null) {
-//
-//            //データベース別名を取得
-//            System.out.println(DataBaseInfo.connect.getDatabaseName());
-//
-////            db.setVisible(true);
-////            this.dispose();
-//        } else {
-//            //接続提示
-//            dialog.popDialog(ConmentMessage.PLESECONNECT, false);
-//
-//        }
     }//GEN-LAST:event_OkActionPerformed
 
     private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
@@ -330,44 +313,6 @@ public class ConnectRegiste extends javax.swing.JFrame {
         AddOrDeleteDb dbtp = new AddOrDeleteDb();
         dbtp.setVisible(true);
     }//GEN-LAST:event_CancelActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConnectRegiste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConnectRegiste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConnectRegiste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConnectRegiste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConnectRegiste().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
